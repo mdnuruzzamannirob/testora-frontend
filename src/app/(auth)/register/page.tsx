@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff, AlertCircle, User, Mail, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants";
+import { useAppDispatch } from "@/store/hooks";
+import { setCredentials } from "@/store/slices/authSlice";
 
 const schema = z
   .object({
@@ -30,6 +32,7 @@ type FormValues = z.infer<typeof schema>;
 
 export default function RegisterPage() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -40,11 +43,22 @@ export default function RegisterPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (_data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setServerError(null);
     try {
       await new Promise((r) => setTimeout(r, 900));
-      router.push(ROUTES.LOGIN);
+      dispatch(
+        setCredentials({
+          user: {
+            id: "1",
+            name: data.fullName,
+            email: data.email,
+            role: "student",
+          },
+          token: "mock-token-",
+        })
+      );
+      router.push(ROUTES.HOME);
     } catch {
       setServerError("Something went wrong. Please try again.");
     }

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -53,7 +53,7 @@ export default function CheckoutPage() {
     <main className="min-h-screen bg-gray-50">
       <SiteNavbar />
 
-      <div className="mx-auto max-w-6xl px-6 py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         <Link
           href={ROUTES.CART}
           className="mb-6 flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-800"
@@ -68,6 +68,7 @@ export default function CheckoutPage() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {/* Left column */}
             <div className="space-y-5 lg:col-span-2">
+
               {/* Customer Information */}
               <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
                 <h2 className="mb-5 text-base font-bold text-gray-900">Customer Information</h2>
@@ -83,7 +84,7 @@ export default function CheckoutPage() {
                       className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:outline-none"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <label className="mb-1 block text-xs text-gray-500">
                         First Name <span className="text-red-500">*</span>
@@ -122,7 +123,7 @@ export default function CheckoutPage() {
                       className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:outline-none"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <label className="mb-1 block text-xs text-gray-500">
                         City <span className="text-red-500">*</span>
@@ -207,7 +208,7 @@ export default function CheckoutPage() {
                         className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm focus:border-blue-500 focus:outline-none"
                       />
                     </div>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                       <div>
                         <label className="mb-1 block text-xs text-gray-500">
                           Expiry Date <span className="text-red-500">*</span>

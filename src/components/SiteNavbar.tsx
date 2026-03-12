@@ -2,7 +2,16 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-import { ShoppingCart, ChevronDown, ShoppingBag, UserCircle2, LogOut, Package } from "lucide-react";
+import {
+  ShoppingCart,
+  ChevronDown,
+  ShoppingBag,
+  UserCircle2,
+  LogOut,
+  Package,
+  Menu,
+  X,
+} from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { ROUTES } from "@/constants";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
@@ -23,6 +32,7 @@ export function SiteNavbar() {
   const cartCount = cartItems.reduce((sum, i) => sum + i.quantity, 0);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,11 +45,17 @@ export function SiteNavbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, []);
+
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6">
         <Logo size="md" />
 
+        {/* Desktop nav links */}
         <div className="hidden items-center gap-7 md:flex">
           {NAV_LINKS.map((l) => (
             <Link
@@ -52,7 +68,8 @@ export function SiteNavbar() {
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        {/* Right side: cart + user/auth + hamburger */}
+        <div className="flex items-center gap-2 sm:gap-3">
           <Link href={ROUTES.CART} className="relative p-1.5 text-gray-600 hover:text-gray-900">
             <ShoppingCart className="h-5 w-5" />
             {cartCount > 0 && (
@@ -66,25 +83,23 @@ export function SiteNavbar() {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setDropdownOpen((o) => !o)}
-                className="flex items-center gap-2 rounded-lg border border-gray-100 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+                className="flex items-center gap-2 rounded-lg border border-gray-100 px-2 py-1.5 text-sm text-gray-700 hover:bg-gray-50 sm:px-3"
               >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-100">
-                  <UserCircle2 className="h-5 w-5 text-blue-500" />
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                  {user.name.charAt(0).toUpperCase()}
                 </div>
                 <span className="hidden font-medium sm:block">{user.name}</span>
                 <ChevronDown
-                  className={`h-3.5 w-3.5 text-gray-400 transition-transform ${dropdownOpen ? "rotate-180" : ""}`}
+                  className={`hidden h-3.5 w-3.5 text-gray-400 transition-transform sm:block ${dropdownOpen ? "rotate-180" : ""}`}
                 />
               </button>
 
               {dropdownOpen && (
                 <div className="absolute top-full right-0 mt-2 w-52 overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg">
-                  {/* Header */}
                   <div className="border-b border-gray-100 px-4 py-3">
                     <p className="text-sm font-semibold text-gray-900">{user.name}</p>
-                    <p className="text-xs text-gray-400">{user.email}</p>
+                    <p className="truncate text-xs text-gray-400">{user.email}</p>
                   </div>
-                  {/* Links */}
                   <div className="py-1">
                     <Link
                       href={ROUTES.ORDERS}
@@ -127,7 +142,7 @@ export function SiteNavbar() {
               )}
             </div>
           ) : (
-            <>
+            <div className="hidden items-center gap-2 sm:flex">
               <Link
                 href={ROUTES.LOGIN}
                 className="text-sm font-medium text-gray-700 hover:text-gray-900"
@@ -140,10 +155,93 @@ export function SiteNavbar() {
               >
                 Register
               </Link>
-            </>
+            </div>
           )}
+
+          {/* Hamburger — mobile only */}
+          <button
+            className="p-1.5 text-gray-600 hover:text-gray-900 md:hidden"
+            onClick={() => setMobileOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile drawer */}
+      {mobileOpen && (
+        <div className="border-t border-gray-100 bg-white px-4 pb-4 md:hidden">
+          <div className="flex flex-col gap-1 pt-3">
+            {NAV_LINKS.map((l) => (
+              <Link
+                key={l.label}
+                href={l.href}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+          {!isAuthenticated && (
+            <div className="mt-3 flex gap-2 border-t border-gray-100 pt-3">
+              <Link
+                href={ROUTES.LOGIN}
+                onClick={() => setMobileOpen(false)}
+                className="flex-1 rounded-lg border border-gray-200 py-2.5 text-center text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                Login
+              </Link>
+              <Link
+                href={ROUTES.REGISTER}
+                onClick={() => setMobileOpen(false)}
+                className="flex-1 rounded-lg bg-blue-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-blue-700"
+              >
+                Register
+              </Link>
+            </div>
+          )}
+          {isAuthenticated && user && (
+            <div className="mt-3 border-t border-gray-100 pt-3">
+              <div className="mb-2 flex items-center gap-3 px-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+                  {user.name.charAt(0).toUpperCase()}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">{user.name}</p>
+                  <p className="truncate text-xs text-gray-400">{user.email}</p>
+                </div>
+              </div>
+              {[
+                { label: "My Orders", href: ROUTES.ORDERS },
+                { label: "Account / Profile", href: ROUTES.PROFILE },
+                { label: "My Packages", href: ROUTES.MY_PACKAGES },
+              ].map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block rounded-lg px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50"
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <button
+                onClick={() => {
+                  dispatch(logout());
+                  setMobileOpen(false);
+                }}
+                className="mt-1 w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium text-red-500 hover:bg-red-50"
+              >
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </nav>
   );
 }
+
+

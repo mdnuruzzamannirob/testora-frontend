@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { Eye, EyeOff, AlertCircle, Lock, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants";
+import { useAppDispatch } from "@/store/hooks";
+import { setCredentials } from "@/store/slices/authSlice";
 
 const schema = z.object({
   emailOrUsername: z.string().min(1, "Email or username is required"),
@@ -19,6 +21,7 @@ type FormValues = z.infer<typeof schema>;
 
 export default function LoginPage() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
@@ -28,11 +31,24 @@ export default function LoginPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-  const onSubmit = async (_data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setServerError(null);
     try {
       await new Promise((r) => setTimeout(r, 900));
-      router.push(ROUTES.DASHBOARD);
+      dispatch(
+        setCredentials({
+          user: {
+            id: "1",
+            name: data.emailOrUsername.split("@")[0] || "User",
+            email: data.emailOrUsername.includes("@")
+              ? data.emailOrUsername
+              : `${data.emailOrUsername}@testora.com`,
+            role: "student",
+          },
+          token: "mock-token-",
+        })
+      );
+      router.push(ROUTES.HOME);
     } catch {
       setServerError("Invalid credentials. Please try again.");
     }

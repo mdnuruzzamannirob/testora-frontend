@@ -59,7 +59,7 @@ export default function PackagesPage() {
 
       {/* Hero banner */}
       <section className="border-b border-gray-100 py-14 text-center">
-        <div className="mx-auto max-w-2xl px-6">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6">
           <h1 className="text-3xl font-extrabold text-gray-900">Exam Preparation Packages</h1>
           <p className="mt-3 text-sm text-gray-500">
             Choose the package that fits your exam preparation needs. All packages include mobile
@@ -76,7 +76,7 @@ export default function PackagesPage() {
 
       {/* Packages grid */}
       <section className="py-16">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-extrabold text-gray-900">Choose Your Package</h2>
             <p className="mt-2 text-sm text-gray-500">
@@ -133,7 +133,7 @@ export default function PackagesPage() {
 
       {/* CTA */}
       <section className="bg-gradient-to-r from-teal-500 to-blue-600 py-12">
-        <div className="mx-auto max-w-xl px-6 text-center">
+        <div className="mx-auto max-w-xl px-4 sm:px-6 text-center">
           <h2 className="mb-2 text-2xl font-extrabold text-white">Ready to Start?</h2>
           <p className="mb-6 text-sm text-blue-100">
             Join thousands of students already using Testora to ace their exams.

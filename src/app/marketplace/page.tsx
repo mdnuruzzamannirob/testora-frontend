@@ -150,7 +150,7 @@ export default function MarketplacePage() {
       <SiteNavbar />
 
       {/* Page header */}
-      <div className="border-b border-gray-100 bg-white px-6 py-8">
+        <div className="border-b border-gray-100 bg-white px-4 py-6 sm:px-6 sm:py-8">
         <div className="mx-auto max-w-7xl">
           <h1 className="text-3xl font-extrabold text-gray-900">Marketplace</h1>
           <p className="mt-1 text-sm text-gray-500">
@@ -159,7 +159,7 @@ export default function MarketplacePage() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 py-8">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
         {/* Search + meta */}
         <div className="mb-6 flex flex-wrap items-center gap-3">
           <div className="relative flex-1">

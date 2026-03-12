@@ -28,7 +28,7 @@ function OrderConfirmedContent() {
   });
 
   return (
-    <div className="mx-auto max-w-2xl space-y-5 px-6 py-12">
+    <div className="mx-auto max-w-2xl space-y-5 px-4 py-8 sm:px-6 sm:py-12">
       {/* Confirmed banner */}
       <div className="rounded-xl border border-blue-100 bg-white p-8 text-center shadow-sm">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-50">

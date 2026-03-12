@@ -4,7 +4,7 @@ import { CalendarDays, Clock, User, ChevronRight, Zap } from "lucide-react";
 import { SiteNavbar } from "@/components/SiteNavbar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
-import { BLOG_POSTS } from "../page";
+import { BLOG_POSTS } from "@/lib/blog-data";
 
 const CATEGORY_COUNTS: Record<string, number> = {
   "Exam Preparation": 3,
@@ -89,12 +89,13 @@ function getDefaultSections(post: (typeof BLOG_POSTS)[0]) {
   };
 }
 
-export default function BlogDetailPage({ params }: { params: { slug: string } }) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 
-  const content = ARTICLE_CONTENT[params.slug] ?? getDefaultSections(post);
-  const related = BLOG_POSTS.filter((p) => p.slug !== params.slug && !p.featured).slice(0, 2);
+  const content = ARTICLE_CONTENT[slug] ?? getDefaultSections(post);
+  const related = BLOG_POSTS.filter((p) => p.slug !== slug && !p.featured).slice(0, 2);
   const mostRead = BLOG_POSTS.filter((p) => !p.featured).slice(0, 4);
 
   const CATEGORY_COLORS: Record<string, string> = {
@@ -108,7 +109,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
     <main className="min-h-screen bg-white">
       <SiteNavbar />
 
-      <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-1.5 text-xs text-gray-400">
           <Link href={ROUTES.BLOG} className="hover:text-blue-600">
@@ -120,7 +121,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
           <span className="max-w-xs truncate text-gray-700">{post.title}</span>
         </nav>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col gap-8 lg:flex-row">
           {/* Main article */}
           <article className="min-w-0 flex-1">
             <span
@@ -224,7 +225,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
           </article>
 
           {/* Sidebar */}
-          <aside className="hidden w-64 shrink-0 lg:block">
+          <aside className="w-full shrink-0 lg:w-64">
             {/* Search */}
             <div className="mb-5 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
               <h3 className="mb-3 text-sm font-bold text-gray-900">Search Articles</h3>

@@ -19,7 +19,7 @@ export default function CartPage() {
     <main className="min-h-screen bg-gray-50">
       <SiteNavbar />
 
-      <div className="mx-auto max-w-6xl px-6 py-10">
+        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         {items.length === 0 ? (
           /* ── Empty state ── */
           <div className="flex flex-col items-center justify-center py-28 text-center">
@@ -128,9 +128,12 @@ export default function CartPage() {
                   <span>Total</span>
                   <span className="text-blue-600">${total.toFixed(2)}</span>
                 </div>
-                <button className="mb-3 w-full rounded-lg bg-blue-600 py-3 text-sm font-semibold text-white hover:bg-blue-700">
+                <Link
+                  href={ROUTES.CHECKOUT}
+                  className="mb-3 block w-full rounded-lg bg-blue-600 py-3 text-center text-sm font-semibold text-white hover:bg-blue-700"
+                >
                   Proceed to Checkout
-                </button>
+                </Link>
                 <Link
                   href={ROUTES.MARKETPLACE}
                   className="mb-4 block w-full rounded-lg border border-gray-200 py-3 text-center text-sm font-semibold text-gray-700 hover:bg-gray-50"

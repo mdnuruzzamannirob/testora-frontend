@@ -106,14 +106,14 @@ export default function OrdersPage() {
     <main className="min-h-screen bg-gray-50">
       <SiteNavbar />
 
-      <div className="mx-auto max-w-5xl px-6 py-10">
+        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
         <h1 className="mb-1 text-2xl font-extrabold text-gray-900">My Orders</h1>
         <p className="mb-8 text-sm text-gray-500">
           Track your marketplace purchases and order status
         </p>
 
         {/* Filters */}
-        <div className="mb-6 flex flex-wrap gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+        <div className="mb-6 flex flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-sm sm:flex-row sm:flex-wrap">
           <div className="relative">
             <Search className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
             <input
@@ -121,13 +121,13 @@ export default function OrdersPage() {
               placeholder="Enter Order ID..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-44 rounded-lg border border-gray-200 py-2 pr-3 pl-8 text-xs focus:border-blue-500 focus:outline-none"
+              className="w-full rounded-lg border border-gray-200 py-2 pr-3 pl-8 text-xs focus:border-blue-500 focus:outline-none sm:w-44"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-blue-500 focus:outline-none"
+            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-blue-500 focus:outline-none sm:w-auto"
           >
             {["All Statuses", "New", "Processing", "Shipped", "Delivered"].map((s) => (
               <option key={s}>{s}</option>
@@ -136,7 +136,7 @@ export default function OrdersPage() {
           <select
             value={paymentFilter}
             onChange={(e) => setPaymentFilter(e.target.value)}
-            className="rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-blue-500 focus:outline-none"
+            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-blue-500 focus:outline-none sm:w-auto"
           >
             {["All Payment Statuses", "Paid", "COD Pending"].map((s) => (
               <option key={s}>{s}</option>

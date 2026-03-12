@@ -28,12 +28,12 @@ export default function MyPackagesPage() {
     <main className="min-h-screen bg-gray-50">
       <SiteNavbar />
 
-      <div className="mx-auto max-w-5xl px-6 py-10">
+        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
         <h1 className="mb-1 text-2xl font-extrabold text-gray-900">My Packages</h1>
         <p className="mb-8 text-sm text-gray-500">View and manage your learning packages</p>
 
         {/* Mobile App Banner */}
-        <div className="mb-8 flex flex-wrap items-center gap-5 rounded-2xl border border-blue-200 bg-blue-50 p-6">
+        <div className="mb-8 flex flex-col gap-5 rounded-2xl border border-blue-200 bg-blue-50 p-5 sm:flex-row sm:items-center sm:p-6">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 shadow-md">
             <Smartphone className="h-6 w-6 text-white" />
           </div>
@@ -46,7 +46,7 @@ export default function MyPackagesPage() {
               the app to access your content.
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <button className="flex items-center gap-1.5 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
               <Download className="h-4 w-4" />
               Download Mobile App

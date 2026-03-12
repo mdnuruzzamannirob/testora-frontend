@@ -11,7 +11,7 @@ export default function AboutPage() {
 
       {/* Hero */}
       <section className="bg-blue-50/60 py-16 text-center">
-        <div className="mx-auto max-w-2xl px-6">
+        <div className="mx-auto max-w-2xl px-4 sm:px-6">
           <h1 className="text-4xl font-extrabold text-gray-900">About Testora</h1>
           <p className="mt-4 text-base text-gray-500">
             Testora is Kosovo&apos;s leading educational platform dedicated to helping students
@@ -23,7 +23,7 @@ export default function AboutPage() {
 
       {/* Mission + Vision */}
       <section className="py-16">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-blue-100 bg-white p-7 shadow-sm">
               <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100">
@@ -61,7 +61,7 @@ export default function AboutPage() {
 
       {/* What We Support */}
       <section className="bg-gray-50/70 py-16">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <h2 className="mb-8 text-center text-3xl font-extrabold text-gray-900">
             What We Support
           </h2>
@@ -102,7 +102,7 @@ export default function AboutPage() {
 
       {/* Our Values */}
       <section className="py-16">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <h2 className="mb-8 text-center text-3xl font-extrabold text-gray-900">Our Values</h2>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {[
@@ -137,7 +137,7 @@ export default function AboutPage() {
 
       {/* How Testora Works CTA */}
       <section className="bg-blue-600 py-14">
-        <div className="mx-auto max-w-3xl px-6">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6">
           <h2 className="mb-6 text-xl font-bold text-white">How Testora Works</h2>
           <ol className="mb-8 flex flex-col gap-3">
             {[

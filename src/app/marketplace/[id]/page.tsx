@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { use, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ShoppingCart, Heart, Truck, ShieldCheck, RefreshCw, Check } from "lucide-react";
 import { SiteNavbar } from "@/components/SiteNavbar";
@@ -67,15 +67,185 @@ const PRODUCTS: Record<
     included: ["1 Backpack", "Rain Cover", "Waist Strap"],
     related: [{ id: "8", name: "Classic Messenger Bag", category: "School Bags", price: 34.99 }],
   },
+  "3": {
+    id: "3",
+    name: "Professional Geometry Set",
+    category: "Geometry & Math Tools",
+    desc: "Complete geometry tool set for students",
+    longDesc:
+      "A comprehensive geometry set containing all the essential tools needed for mathematics and technical drawing. Includes a compass, protractor, set squares, and rulers all made from durable materials.",
+    price: 16.99,
+    specs: [
+      { label: "Contents", value: "10-piece set" },
+      { label: "Material", value: "Aluminium & ABS plastic" },
+      { label: "Case", value: "Hard zipper case included" },
+      { label: "Suitable For", value: "High school & university" },
+    ],
+    included: ["Compass", "Protractor", "2× Set Squares", "15cm Ruler", "30cm Ruler", "Hard Case"],
+    related: [{ id: "10", name: "Digital Protractor", category: "Geometry & Math Tools", price: 24.99 }],
+  },
+  "4": {
+    id: "4",
+    name: "Casio FX-991EX Scientific Calculator",
+    category: "Scientific Calculators",
+    desc: "Advanced scientific calculator for high school and university",
+    longDesc:
+      "The Casio FX-991EX is one of the most advanced non-programmable scientific calculators available. It features a high-resolution LCD, spreadsheet function, and over 550 functions.",
+    price: 34.99,
+    specs: [
+      { label: "Functions", value: "552 functions" },
+      { label: "Display", value: "High-res natural textbook" },
+      { label: "Power", value: "Solar + battery backup" },
+      { label: "Memory", value: "40 variables" },
+      { label: "Dimensions", value: "16.3 × 7.7 × 1.1 cm" },
+    ],
+    included: ["1 Calculator", "1 Slide-on Case", "1 Battery"],
+    related: [{ id: "1", name: "Texas Instruments TI-84 Plus", category: "Scientific Calculators", price: 119.99 }],
+  },
+  "5": {
+    id: "5",
+    name: "Physics Fundamentals Textbook",
+    category: "Books",
+    desc: "Essential physics textbook for science students",
+    longDesc:
+      "A comprehensive physics textbook covering mechanics, thermodynamics, electromagnetism, waves, and modern physics. Includes worked examples, practice problems, and online resources.",
+    price: 39.99,
+    specs: [
+      { label: "Pages", value: "680 pages" },
+      { label: "Edition", value: "4th Edition (2025)" },
+      { label: "Format", value: "Hardcover" },
+      { label: "Level", value: "High school & undergraduate" },
+    ],
+    included: ["1 Textbook", "Access Code for Online Resources"],
+    related: [{ id: "7", name: "Complete Mathematics Study Guide", category: "Books", price: 29.99 }],
+  },
+  "6": {
+    id: "6",
+    name: "A4 Ruled Notebook Set",
+    category: "Notebooks",
+    desc: "Set of 3 premium quality notebooks",
+    longDesc:
+      "A set of 3 premium A4 ruled notebooks with thick cream-white paper that prevents ink bleed-through. Ideal for lecture notes, study notes, and journaling.",
+    price: 12.99,
+    specs: [
+      { label: "Count", value: "3 notebooks" },
+      { label: "Ruling", value: "8mm ruled" },
+      { label: "Pages", value: "200 pages each" },
+      { label: "Paper Weight", value: "80 gsm" },
+      { label: "Size", value: "A4 (297 × 210 mm)" },
+    ],
+    included: ["3× A4 Ruled Notebooks"],
+    related: [{ id: "9", name: "Grid Notebook for Mathematics", category: "Notebooks", price: 8.99 }],
+  },
+  "7": {
+    id: "7",
+    name: "Complete Mathematics Study Guide",
+    category: "Books",
+    desc: "Comprehensive mathematics reference for students",
+    longDesc:
+      "A complete mathematics reference guide covering algebra, geometry, trigonometry, calculus, statistics, and more. Perfect for exam revision and homework support.",
+    price: 29.99,
+    specs: [
+      { label: "Pages", value: "520 pages" },
+      { label: "Edition", value: "Latest Edition" },
+      { label: "Format", value: "Softcover" },
+      { label: "Level", value: "Secondary & A-level" },
+    ],
+    included: ["1 Study Guide"],
+    related: [{ id: "5", name: "Physics Fundamentals Textbook", category: "Books", price: 39.99 }],
+  },
+  "8": {
+    id: "8",
+    name: "Classic Messenger Bag",
+    category: "School Bags",
+    desc: "Professional messenger bag for university students",
+    longDesc:
+      "A stylish and functional messenger bag with a dedicated laptop sleeve, multiple organisational pockets, and an adjustable cross-body strap. Suitable for daily commutes.",
+    price: 34.99,
+    specs: [
+      { label: "Capacity", value: "15 litres" },
+      { label: "Laptop Sleeve", value: "Up to 13 inches" },
+      { label: "Material", value: "Canvas with leather trim" },
+      { label: "Strap", value: "Adjustable shoulder strap" },
+    ],
+    included: ["1 Messenger Bag", "Removable Shoulder Pad"],
+    related: [{ id: "2", name: "Premium Student Backpack", category: "School Bags", price: 49.99 }],
+  },
+  "9": {
+    id: "9",
+    name: "Grid Notebook for Mathematics",
+    category: "Notebooks",
+    desc: "Grid notebook for math and technical drawing",
+    longDesc:
+      "A high-quality grid notebook specifically designed for mathematics, physics, and technical drawing. The 5mm grid pattern is printed in light blue ink so it doesn't interfere with your drawings.",
+    price: 8.99,
+    specs: [
+      { label: "Ruling", value: "5mm grid" },
+      { label: "Pages", value: "160 pages" },
+      { label: "Paper Weight", value: "90 gsm" },
+      { label: "Size", value: "A4 (297 × 210 mm)" },
+    ],
+    included: ["1× Grid Notebook"],
+    related: [{ id: "6", name: "A4 Ruled Notebook Set", category: "Notebooks", price: 12.99 }],
+  },
+  "10": {
+    id: "10",
+    name: "Digital Protractor",
+    category: "Geometry & Math Tools",
+    desc: "Electronic angle measurement tool",
+    longDesc:
+      "A precision digital protractor with a built-in LCD display that shows exact angle measurements to 0.1° accuracy. Ideal for geometry, carpentry, and technical drawing.",
+    price: 24.99,
+    specs: [
+      { label: "Accuracy", value: "±0.1 degrees" },
+      { label: "Range", value: "0–360°" },
+      { label: "Display", value: "LCD digital" },
+      { label: "Power", value: "1× LR44 battery" },
+    ],
+    included: ["1 Digital Protractor", "1 Battery", "Carrying Pouch"],
+    related: [{ id: "3", name: "Professional Geometry Set", category: "Geometry & Math Tools", price: 16.99 }],
+  },
+  "11": {
+    id: "11",
+    name: "Premium Pen Set",
+    category: "Stationery",
+    desc: "Set of 10 high-quality ballpoint pens",
+    longDesc:
+      "A set of 10 premium ballpoint pens offering smooth, consistent ink flow. Includes 5 blue, 3 black, and 2 red pens. Comfortable grip for extended writing sessions.",
+    price: 14.99,
+    specs: [
+      { label: "Count", value: "10 pens" },
+      { label: "Tip Size", value: "0.7mm medium" },
+      { label: "Ink Type", value: "Oil-based ballpoint" },
+      { label: "Colors", value: "Blue, Black, Red" },
+    ],
+    included: ["10× Ballpoint Pens", "Reusable Pouch"],
+    related: [{ id: "12", name: "Highlighter Marker Set", category: "Stationery", price: 9.99 }],
+  },
+  "12": {
+    id: "12",
+    name: "Highlighter Marker Set",
+    category: "Stationery",
+    desc: "6-color highlighter set for studying",
+    longDesc:
+      "A vibrant set of 6 chisel-tip highlighters in assorted colours. The water-based ink dries quickly, resists smearing, and is compatible with all paper types including textbooks.",
+    price: 9.99,
+    specs: [
+      { label: "Count", value: "6 highlighters" },
+      { label: "Tip", value: "Chisel tip (1–5mm)" },
+      { label: "Ink", value: "Water-based, fast-drying" },
+      { label: "Colors", value: "Yellow, Pink, Green, Orange, Blue, Purple" },
+    ],
+    included: ["6× Highlighter Markers"],
+    related: [{ id: "11", name: "Premium Pen Set", category: "Stationery", price: 14.99 }],
+  },
 };
 
-// Fallback product for IDs not in PRODUCTS
-function getProduct(id: string) {
-  return PRODUCTS[id] ?? null;
-}
+// ─────────────────────────────────────────────
 
-export default function ProductDetailPage({ params }: { params: { id: string } }) {
-  const product = getProduct(params.id);
+export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
+  const product = PRODUCTS[id] ?? null;
   if (!product) notFound();
 
   const dispatch = useAppDispatch();
@@ -101,7 +271,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     <main className="min-h-screen bg-white">
       <SiteNavbar />
 
-      <div className="mx-auto max-w-6xl px-6 py-8">
+        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
         {/* Breadcrumb */}
         <Link
           href={ROUTES.MARKETPLACE}

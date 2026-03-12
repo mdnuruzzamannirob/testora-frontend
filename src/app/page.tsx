@@ -21,7 +21,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-white py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex flex-col items-center gap-12 md:flex-row md:items-center md:gap-16">
           {/* Left text */}
           <div className="flex-1">
@@ -94,7 +94,7 @@ function Stats() {
   ];
   return (
     <section className="border-y border-gray-100 bg-gray-50/70 py-10">
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-6 md:grid-cols-4">
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-4 sm:px-6 md:grid-cols-4">
         {stats.map((s) => (
           <div key={s.label} className="rounded-xl bg-white p-5 text-center shadow-sm">
             <p className="text-2xl font-extrabold text-blue-600">{s.value}</p>
@@ -110,7 +110,7 @@ function Stats() {
 function AboutSection() {
   return (
     <section className="bg-blue-50/60 py-16">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">About Testora</h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -169,7 +169,7 @@ function ExamCategories() {
   ];
   return (
     <section className="py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">Exam Categories</h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -214,7 +214,7 @@ function HowItWorks() {
   ];
   return (
     <section className="bg-gray-50/70 py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">How It Works</h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -293,7 +293,7 @@ function PlatformFeatures() {
   ];
   return (
     <section className="py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">Platform Features</h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -330,7 +330,7 @@ function AppScreensPreview() {
   ];
   return (
     <section className="bg-gray-50/70 py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">App Screens Preview</h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -417,7 +417,7 @@ function Packages() {
 
   return (
     <section className="py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">Choose Your Package</h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -494,7 +494,7 @@ function MarketplacePreview() {
 
   return (
     <section className="bg-gray-50/70 py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">Marketplace Preview</h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -559,7 +559,7 @@ function BlogPreview() {
 
   return (
     <section className="py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">Blog Preview</h2>
           <p className="mt-2 text-sm text-gray-500">
@@ -597,7 +597,7 @@ function BlogPreview() {
 function CTA() {
   return (
     <section className="bg-linear-to-r from-teal-500 to-blue-600 py-16">
-      <div className="mx-auto max-w-2xl px-6 text-center">
+      <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
         <h2 className="mb-2 text-3xl font-extrabold text-white">Start Preparing Today</h2>
         <p className="mb-8 text-blue-100">
           Join thousands of students who are already achieving their exam goals with Testora
