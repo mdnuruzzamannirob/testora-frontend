@@ -39,7 +39,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="w-full max-w-[400px]">
+    <div className="w-full max-w-100">
       <h1 className="mb-1 text-2xl font-bold text-gray-900">Welcome to Testora</h1>
       <p className="mb-6 text-sm text-gray-500">One account works on both Web and App</p>
 

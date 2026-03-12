@@ -1,15 +1,6 @@
 import Link from "next/link";
 import { ROUTES } from "@/constants";
-import {
-  BookOpen,
-  Zap,
-  Monitor,
-  BarChart2,
-  Check,
-  ArrowRight,
-  Star,
-  ChevronRight,
-} from "lucide-react";
+import { BookOpen, Zap, Monitor, BarChart2, Check, ArrowRight, ChevronRight } from "lucide-react";
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 function Navbar() {
@@ -17,7 +8,7 @@ function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
         <Link href={ROUTES.HOME} className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-teal-400 to-blue-500">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-teal-400 to-blue-500">
             <svg
               className="h-4 w-4 text-white"
               viewBox="0 0 24 24"
@@ -72,7 +63,7 @@ function Hero() {
           <div className="flex-1">
             <h1 className="text-4xl leading-tight font-extrabold text-gray-900 md:text-5xl">
               Master Your Exams with{" "}
-              <span className="bg-gradient-to-r from-teal-400 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-teal-400 to-blue-600 bg-clip-text text-transparent">
                 Testora
               </span>
             </h1>
@@ -105,8 +96,8 @@ function Hero() {
           </div>
           {/* Right phone mockup */}
           <div className="relative flex shrink-0 items-center justify-center">
-            <div className="relative h-[420px] w-[210px] overflow-hidden rounded-[36px] border-[7px] border-gray-800 bg-gray-800 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400 via-blue-500 to-indigo-600" />
+            <div className="relative h-105 w-52.5 overflow-hidden rounded-[36px] border-[7px] border-gray-800 bg-gray-800 shadow-2xl">
+              <div className="absolute inset-0 bg-linear-to-br from-cyan-400 via-blue-500 to-indigo-600" />
               <div className="absolute inset-0 flex flex-col gap-3 px-4 py-5">
                 <div className="h-5 w-3/4 rounded-md bg-white/30" />
                 <div className="h-32 w-full rounded-xl bg-white/20" />
@@ -244,7 +235,7 @@ function HowItWorks() {
           </div>
           {/* Visual */}
           <div className="flex flex-1 justify-center">
-            <div className="relative h-64 w-64 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-100 to-indigo-200 shadow-lg">
+            <div className="relative h-64 w-64 overflow-hidden rounded-3xl bg-linear-to-br from-blue-100 to-indigo-200 shadow-lg">
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6">
                 <div className="h-20 w-full rounded-xl bg-white/40" />
                 <div className="h-6 w-3/4 rounded bg-white/40" />
@@ -310,7 +301,7 @@ function AppScreensPreview() {
           {screens.map((s) => (
             <div key={s.label} className="flex flex-col items-center gap-3">
               <div
-                className={`relative h-[260px] w-[130px] overflow-hidden rounded-[28px] border-[5px] border-gray-800 bg-gradient-to-br shadow-xl ${s.gradient}`}
+                className={`relative h-65 w-32.5 overflow-hidden rounded-[28px] border-[5px] border-gray-800 bg-linear-to-br shadow-xl ${s.gradient}`}
               >
                 <div className="absolute inset-0 flex flex-col gap-2 p-3">
                   <div className="h-3 w-3/4 rounded bg-white/30" />
@@ -477,7 +468,7 @@ function MarketplacePreview() {
               className="flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm"
             >
               <div
-                className={`flex h-36 items-center justify-center bg-gradient-to-br ${gradients[i]}`}
+                className={`flex h-36 items-center justify-center bg-linear-to-br ${gradients[i]}`}
               >
                 <BookOpen className="h-12 w-12 text-gray-400/60" />
               </div>
@@ -541,7 +532,7 @@ function BlogPreview() {
               key={p.title}
               className="flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
             >
-              <div className={`h-40 bg-gradient-to-br ${p.color}`} />
+              <div className={`h-40 bg-linear-to-br ${p.color}`} />
               <div className="flex flex-1 flex-col p-5">
                 <h4 className="mb-2 text-sm leading-snug font-bold text-gray-900">{p.title}</h4>
                 <p className="mb-3 flex-1 text-xs leading-relaxed text-gray-500">{p.excerpt}</p>
@@ -565,7 +556,7 @@ function BlogPreview() {
 // ─── CTA ──────────────────────────────────────────────────────────────────────
 function CTA() {
   return (
-    <section className="bg-gradient-to-r from-teal-500 to-blue-600 py-16">
+    <section className="bg-linear-to-r from-teal-500 to-blue-600 py-16">
       <div className="mx-auto max-w-2xl px-6 text-center">
         <h2 className="mb-2 text-3xl font-extrabold text-white">Start Preparing Today</h2>
         <p className="mb-8 text-blue-100">
@@ -617,7 +608,7 @@ function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href={ROUTES.HOME} className="mb-3 flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-teal-400 to-blue-500">
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-teal-400 to-blue-500">
                 <svg
                   className="h-3.5 w-3.5 text-white"
                   viewBox="0 0 24 24"

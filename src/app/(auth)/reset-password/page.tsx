@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Eye, EyeOff, AlertCircle, Lock, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants";
@@ -44,7 +44,6 @@ function strengthInfo(count: number): { label: string; color: string } {
 }
 
 function ResetPasswordContent() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email") ?? "";
 
@@ -76,7 +75,7 @@ function ResetPasswordContent() {
 
   if (success) {
     return (
-      <div className="w-full max-w-[400px] text-center">
+      <div className="w-full max-w-100 text-center">
         <div className="mb-5 flex justify-center">
           <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-green-100">
             <CheckCircle2 className="h-10 w-10 text-green-500" />

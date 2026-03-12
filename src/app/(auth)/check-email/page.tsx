@@ -16,7 +16,7 @@ function CheckEmailContent() {
     : "your email";
 
   return (
-    <div className="w-full max-w-[400px] text-center">
+    <div className="w-full max-w-100 text-center">
       {/* Icon */}
       <div className="mb-5 flex justify-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100">
