@@ -1,57 +1,21 @@
 import Link from "next/link";
 import { ROUTES } from "@/constants";
-import { BookOpen, Zap, Monitor, BarChart2, Check, ArrowRight, ChevronRight } from "lucide-react";
-
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-function Navbar() {
-  return (
-    <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
-        <Link href={ROUTES.HOME} className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br from-teal-400 to-blue-500">
-            <svg
-              className="h-4 w-4 text-white"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 2L12 22M12 2L6 8M12 2L18 8" />
-            </svg>
-          </div>
-          <span className="text-[15px] font-extrabold tracking-widest text-gray-900">Testora</span>
-        </Link>
-        <div className="hidden items-center gap-7 md:flex">
-          {["Home", "About", "Packages", "Marketplace", "Blog"].map((item) => (
-            <Link
-              key={item}
-              href="#"
-              className="text-sm text-gray-600 transition hover:text-gray-900"
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
-        <div className="flex items-center gap-3">
-          <Link
-            href={ROUTES.LOGIN}
-            className="text-sm font-medium text-gray-700 hover:text-gray-900"
-          >
-            Login
-          </Link>
-          <Link
-            href={ROUTES.REGISTER}
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
-          >
-            Register
-          </Link>
-        </div>
-      </div>
-    </nav>
-  );
-}
+import {
+  BookOpen,
+  Zap,
+  Monitor,
+  BarChart2,
+  Check,
+  ArrowRight,
+  ChevronRight,
+  Brain,
+  CalendarCheck,
+  Users,
+  Smartphone,
+  MessageSquareMore,
+} from "lucide-react";
+import { SiteNavbar } from "@/components/SiteNavbar";
+import { SiteFooter } from "@/components/SiteFooter";
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
@@ -142,6 +106,45 @@ function Stats() {
   );
 }
 
+// ─── About ───────────────────────────────────────────────────────────────────
+function AboutSection() {
+  return (
+    <section className="bg-blue-50/60 py-16">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="mb-8 text-center">
+          <h2 className="text-3xl font-extrabold text-gray-900">About Testora</h2>
+          <p className="mt-2 text-sm text-gray-500">
+            Empowering students to achieve their academic goals through innovative learning
+            solutions
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
+            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100">
+              <Brain className="h-5 w-5 text-blue-600" />
+            </div>
+            <h3 className="mb-2 font-bold text-gray-900">Our Mission</h3>
+            <p className="text-sm text-gray-500">
+              Provide accessible, high-quality exam preparation resources that help students in
+              their most important exams through comprehensive, structured practice.
+            </p>
+          </div>
+          <div className="rounded-xl border border-blue-100 bg-white p-6 shadow-sm">
+            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-teal-100">
+              <Monitor className="h-5 w-5 text-teal-600" />
+            </div>
+            <h3 className="mb-2 font-bold text-gray-900">Our Vision</h3>
+            <p className="text-sm text-gray-500">
+              To become the leading educational technology platform that transforms how students
+              prepare to work and achieve academic excellence.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Exam Categories ──────────────────────────────────────────────────────────
 function ExamCategories() {
   const categories = [
@@ -193,21 +196,20 @@ function ExamCategories() {
 // ─── How It Works ─────────────────────────────────────────────────────────────
 function HowItWorks() {
   const steps = [
-    { num: 1, title: "Create Account", desc: "Create your student account in seconds." },
+    {
+      num: 1,
+      title: "Download App",
+      desc: "Download our mobile app from the App Store or Google Play.",
+    },
     {
       num: 2,
-      title: "Choose Exam Category",
-      desc: "Select Semimatura, Matura, or Entrance Exams.",
+      title: "Choose Package",
+      desc: "Select the perfect package that matches your exam preparation needs.",
     },
     {
       num: 3,
-      title: "Practice Questions",
-      desc: "Browse sections, short practice, or full exam tests.",
-    },
-    {
-      num: 4,
-      title: "Track Your Results",
-      desc: "Monitor your progress and improve your performance.",
+      title: "Start Learning",
+      desc: "Begin practicing with thousands of questions and track your progress.",
     },
   ];
   return (
@@ -252,18 +254,53 @@ function HowItWorks() {
 // ─── Platform Features ────────────────────────────────────────────────────────
 function PlatformFeatures() {
   const features = [
-    { icon: BookOpen, label: "Study Archive", color: "bg-blue-100 text-blue-600" },
-    { icon: Zap, label: "Quick Quizzes", color: "bg-amber-100 text-amber-600" },
-    { icon: Monitor, label: "Full Exam Simulation", color: "bg-teal-100 text-teal-600" },
-    { icon: BarChart2, label: "Performance Statistics", color: "bg-purple-100 text-purple-600" },
+    {
+      icon: BookOpen,
+      label: "Comprehensive Content",
+      desc: "Access thousands of carefully curated questions across multiple subjects.",
+      color: "bg-blue-100 text-blue-600",
+    },
+    {
+      icon: Brain,
+      label: "Smart Analytics",
+      desc: "Track your performance with advanced analytics and targeted insights.",
+      color: "bg-purple-100 text-purple-600",
+    },
+    {
+      icon: CalendarCheck,
+      label: "Flexible Schedule",
+      desc: "Study at your own pace with personalised learning schedule.",
+      color: "bg-teal-100 text-teal-600",
+    },
+    {
+      icon: Users,
+      label: "Expert Content",
+      desc: "Content designed by professional educators and subject matter experts.",
+      color: "bg-amber-100 text-amber-600",
+    },
+    {
+      icon: Smartphone,
+      label: "Mobile Learning",
+      desc: "Learn on the go with our powerful mobile application.",
+      color: "bg-cyan-100 text-cyan-600",
+    },
+    {
+      icon: MessageSquareMore,
+      label: "Instant Feedback",
+      desc: "Get immediate explanations and corrections for every question.",
+      color: "bg-rose-100 text-rose-600",
+    },
   ];
   return (
     <section className="py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">Platform Features</h2>
+          <p className="mt-2 text-sm text-gray-500">
+            Everything you need to succeed in your exam preparation
+          </p>
         </div>
-        <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
           {features.map((f) => (
             <div
               key={f.label}
@@ -272,7 +309,10 @@ function PlatformFeatures() {
               <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${f.color}`}>
                 <f.icon className="h-6 w-6" />
               </div>
-              <p className="text-sm font-semibold text-gray-800">{f.label}</p>
+              <div className="text-center">
+                <p className="mb-1 text-sm font-semibold text-gray-800">{f.label}</p>
+                <p className="text-xs text-gray-500">{f.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -580,86 +620,14 @@ function CTA() {
   );
 }
 
-// ─── Footer ───────────────────────────────────────────────────────────────────
-function Footer() {
-  const columns = [
-    {
-      heading: "Company",
-      links: ["About", "Team", "Careers", "Contact"],
-    },
-    {
-      heading: "Product",
-      links: ["Packages", "Marketplace", "Blog", "App"],
-    },
-    {
-      heading: "Legal",
-      links: ["Privacy Policy", "Terms of Service", "Cookie Policy"],
-    },
-    {
-      heading: "Support",
-      links: ["Help Center", "FAQ"],
-    },
-  ];
-
-  return (
-    <footer className="border-t border-gray-100 bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="mb-10 grid grid-cols-2 gap-8 md:grid-cols-5">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <Link href={ROUTES.HOME} className="mb-3 flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-linear-to-br from-teal-400 to-blue-500">
-                <svg
-                  className="h-3.5 w-3.5 text-white"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 2L12 22M12 2L6 8M12 2L18 8" />
-                </svg>
-              </div>
-              <span className="text-sm font-extrabold tracking-widest text-gray-900">Testora</span>
-            </Link>
-            <p className="text-xs text-gray-400">
-              Your comprehensive exam preparation platform for academic success.
-            </p>
-          </div>
-          {/* Columns */}
-          {columns.map((col) => (
-            <div key={col.heading}>
-              <h4 className="mb-3 text-xs font-semibold tracking-wider text-gray-900 uppercase">
-                {col.heading}
-              </h4>
-              <ul className="flex flex-col gap-1.5">
-                {col.links.map((l) => (
-                  <li key={l}>
-                    <Link href="#" className="text-xs text-gray-500 hover:text-gray-800">
-                      {l}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="border-t border-gray-100 pt-6 text-center text-xs text-gray-400">
-          © 2026 Testora. All rights reserved.
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
+      <SiteNavbar />
       <Hero />
       <Stats />
+      <AboutSection />
       <ExamCategories />
       <HowItWorks />
       <PlatformFeatures />
@@ -668,7 +636,7 @@ export default function HomePage() {
       <MarketplacePreview />
       <BlogPreview />
       <CTA />
-      <Footer />
+      <SiteFooter />
     </main>
   );
 }
