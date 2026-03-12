@@ -18,7 +18,15 @@ function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
         <Link href={ROUTES.HOME} className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-teal-400 to-blue-500">
-            <svg className="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              className="h-4 w-4 text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <path d="M12 2L12 22M12 2L6 8M12 2L18 8" />
             </svg>
           </div>
@@ -26,13 +34,20 @@ function Navbar() {
         </Link>
         <div className="hidden items-center gap-7 md:flex">
           {["Home", "About", "Packages", "Marketplace", "Blog"].map((item) => (
-            <Link key={item} href="#" className="text-sm text-gray-600 transition hover:text-gray-900">
+            <Link
+              key={item}
+              href="#"
+              className="text-sm text-gray-600 transition hover:text-gray-900"
+            >
               {item}
             </Link>
           ))}
         </div>
         <div className="flex items-center gap-3">
-          <Link href={ROUTES.LOGIN} className="text-sm font-medium text-gray-700 hover:text-gray-900">
+          <Link
+            href={ROUTES.LOGIN}
+            className="text-sm font-medium text-gray-700 hover:text-gray-900"
+          >
             Login
           </Link>
           <Link
@@ -55,7 +70,7 @@ function Hero() {
         <div className="flex flex-col items-center gap-12 md:flex-row md:items-center md:gap-16">
           {/* Left text */}
           <div className="flex-1">
-            <h1 className="text-4xl font-extrabold leading-tight text-gray-900 md:text-5xl">
+            <h1 className="text-4xl leading-tight font-extrabold text-gray-900 md:text-5xl">
               Master Your Exams with{" "}
               <span className="bg-gradient-to-r from-teal-400 to-blue-600 bg-clip-text text-transparent">
                 Testora
@@ -75,7 +90,13 @@ function Hero() {
                 View Packages
               </Link>
               <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50">
-                <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  className="h-4 w-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <path d="M12 18.5L7 15V9l5-3 5 3v6l-5 3.5z" />
                 </svg>
                 Download App
@@ -157,7 +178,9 @@ function ExamCategories() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">Exam Categories</h2>
-          <p className="mt-2 text-sm text-gray-500">Choose the exam type that fits your educational goals</p>
+          <p className="mt-2 text-sm text-gray-500">
+            Choose the exam type that fits your educational goals
+          </p>
         </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {categories.map((c) => (
@@ -180,16 +203,30 @@ function ExamCategories() {
 function HowItWorks() {
   const steps = [
     { num: 1, title: "Create Account", desc: "Create your student account in seconds." },
-    { num: 2, title: "Choose Exam Category", desc: "Select Semimatura, Matura, or Entrance Exams." },
-    { num: 3, title: "Practice Questions", desc: "Browse sections, short practice, or full exam tests." },
-    { num: 4, title: "Track Your Results", desc: "Monitor your progress and improve your performance." },
+    {
+      num: 2,
+      title: "Choose Exam Category",
+      desc: "Select Semimatura, Matura, or Entrance Exams.",
+    },
+    {
+      num: 3,
+      title: "Practice Questions",
+      desc: "Browse sections, short practice, or full exam tests.",
+    },
+    {
+      num: 4,
+      title: "Track Your Results",
+      desc: "Monitor your progress and improve your performance.",
+    },
   ];
   return (
     <section className="bg-gray-50/70 py-16">
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-10 text-center">
           <h2 className="text-3xl font-extrabold text-gray-900">How It Works</h2>
-          <p className="mt-2 text-sm text-gray-500">Start your exam preparation journey in four simple steps</p>
+          <p className="mt-2 text-sm text-gray-500">
+            Start your exam preparation journey in four simple steps
+          </p>
         </div>
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:gap-12">
           <div className="flex flex-1 flex-col gap-5">
@@ -445,7 +482,7 @@ function MarketplacePreview() {
                 <BookOpen className="h-12 w-12 text-gray-400/60" />
               </div>
               <div className="flex flex-1 flex-col p-3">
-                <p className="mb-1 text-xs font-semibold text-gray-800 leading-tight">{p.name}</p>
+                <p className="mb-1 text-xs leading-tight font-semibold text-gray-800">{p.name}</p>
                 <p className="mb-2 text-xs text-gray-400">{p.category}</p>
                 <p className="mb-2 text-sm font-bold text-gray-900">{p.price}</p>
                 <button className="mt-auto flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 py-1.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50">
@@ -465,21 +502,24 @@ function BlogPreview() {
   const posts = [
     {
       title: "10 Essential Tips for Matura Exam Success",
-      excerpt: "Discover proven strategies and techniques to maximize your performance in the national Matura exam.",
+      excerpt:
+        "Discover proven strategies and techniques to maximize your performance in the national Matura exam.",
       date: "Mar 8, 2026",
       readTime: "5 min read",
       color: "from-amber-100 to-orange-200",
     },
     {
       title: "Understanding University Entrance Exam Requirements",
-      excerpt: "A comprehensive guide to entrance exam requirements across different universities and faculties.",
+      excerpt:
+        "A comprehensive guide to entrance exam requirements across different universities and faculties.",
       date: "Mar 5, 2026",
       readTime: "7 min read",
       color: "from-teal-100 to-cyan-200",
     },
     {
       title: "How Technology is Transforming Exam Preparation",
-      excerpt: "Explore how digital learning platforms are helping students prepare for their exams more effectively.",
+      excerpt:
+        "Explore how digital learning platforms are helping students prepare for their exams more effectively.",
       date: "Mar 1, 2026",
       readTime: "4 min read",
       color: "from-blue-100 to-indigo-200",
@@ -503,10 +543,12 @@ function BlogPreview() {
             >
               <div className={`h-40 bg-gradient-to-br ${p.color}`} />
               <div className="flex flex-1 flex-col p-5">
-                <h4 className="mb-2 text-sm font-bold text-gray-900 leading-snug">{p.title}</h4>
-                <p className="mb-3 flex-1 text-xs text-gray-500 leading-relaxed">{p.excerpt}</p>
+                <h4 className="mb-2 text-sm leading-snug font-bold text-gray-900">{p.title}</h4>
+                <p className="mb-3 flex-1 text-xs leading-relaxed text-gray-500">{p.excerpt}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400">{p.date} · {p.readTime}</span>
+                  <span className="text-xs text-gray-400">
+                    {p.date} · {p.readTime}
+                  </span>
                   <button className="flex items-center gap-1 text-xs font-medium text-blue-600 hover:underline">
                     Read More <ChevronRight className="h-3 w-3" />
                   </button>
@@ -576,7 +618,15 @@ function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link href={ROUTES.HOME} className="mb-3 flex items-center gap-2">
               <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-teal-400 to-blue-500">
-                <svg className="h-3.5 w-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg
+                  className="h-3.5 w-3.5 text-white"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
                   <path d="M12 2L12 22M12 2L6 8M12 2L18 8" />
                 </svg>
               </div>
@@ -589,7 +639,7 @@ function Footer() {
           {/* Columns */}
           {columns.map((col) => (
             <div key={col.heading}>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-gray-900">
+              <h4 className="mb-3 text-xs font-semibold tracking-wider text-gray-900 uppercase">
                 {col.heading}
               </h4>
               <ul className="flex flex-col gap-1.5">
@@ -631,4 +681,3 @@ export default function HomePage() {
     </main>
   );
 }
-

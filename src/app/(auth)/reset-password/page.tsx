@@ -131,13 +131,13 @@ function ResetPasswordContent() {
         <div>
           <label className="mb-1.5 block text-sm font-medium text-gray-700">New Password</label>
           <div className="relative">
-            <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Lock className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-gray-400" />
             <input
               type={showPass ? "text" : "password"}
               {...register("password")}
               placeholder="Enter new password"
               className={cn(
-                "w-full rounded-lg border py-2.5 pl-10 pr-10 text-sm placeholder-gray-400 outline-none transition",
+                "w-full rounded-lg border py-2.5 pr-10 pl-10 text-sm placeholder-gray-400 transition outline-none",
                 "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
                 errors.password
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
@@ -148,7 +148,7 @@ function ResetPasswordContent() {
               type="button"
               tabIndex={-1}
               onClick={() => setShowPass((v) => !v)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400 hover:text-gray-600"
             >
               {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>
@@ -200,13 +200,13 @@ function ResetPasswordContent() {
             Confirm New Password
           </label>
           <div className="relative">
-            <Lock className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Lock className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-gray-400" />
             <input
               type={showConfirm ? "text" : "password"}
               {...register("confirmPassword")}
               placeholder="Confirm new password"
               className={cn(
-                "w-full rounded-lg border py-2.5 pl-10 pr-10 text-sm placeholder-gray-400 outline-none transition",
+                "w-full rounded-lg border py-2.5 pr-10 pl-10 text-sm placeholder-gray-400 transition outline-none",
                 "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
                 errors.confirmPassword
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
@@ -217,7 +217,7 @@ function ResetPasswordContent() {
               type="button"
               tabIndex={-1}
               onClick={() => setShowConfirm((v) => !v)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400 hover:text-gray-600"
             >
               {showConfirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>

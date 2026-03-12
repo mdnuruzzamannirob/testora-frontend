@@ -46,7 +46,9 @@ function VerifyCodeContent() {
     if (!pasted) return;
     e.preventDefault();
     const next = [...otp];
-    pasted.split("").forEach((c, i) => { next[i] = c; });
+    pasted.split("").forEach((c, i) => {
+      next[i] = c;
+    });
     setOtp(next);
     inputRefs.current[Math.min(pasted.length, OTP_LENGTH - 1)]?.focus();
   };
@@ -100,14 +102,16 @@ function VerifyCodeContent() {
         {otp.map((digit, i) => (
           <input
             key={i}
-            ref={(el) => { inputRefs.current[i] = el; }}
+            ref={(el) => {
+              inputRefs.current[i] = el;
+            }}
             type="text"
             inputMode="numeric"
             maxLength={1}
             value={digit}
             onChange={(e) => handleChange(i, e.target.value)}
             onKeyDown={(e) => handleKeyDown(i, e)}
-            className={`h-12 w-11 rounded-lg border text-center text-lg font-semibold text-gray-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 ${
+            className={`h-12 w-11 rounded-lg border text-center text-lg font-semibold text-gray-900 transition outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 ${
               error ? "border-red-400 bg-red-50" : "border-gray-200 bg-white"
             }`}
           />

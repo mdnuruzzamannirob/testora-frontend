@@ -33,10 +33,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       </div>
 
       {/* Right panel */}
-      <div className="flex flex-1 items-center justify-center bg-white px-4 py-10">
-        {children}
-      </div>
+      <div className="flex flex-1 items-center justify-center bg-white px-4 py-10">{children}</div>
     </div>
   );
 }
-

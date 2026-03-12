@@ -54,14 +54,14 @@ export default function ForgotPasswordPage() {
         <div>
           <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
           <div className="relative">
-            <Mail className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Mail className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-gray-400" />
             <input
               type="email"
               autoComplete="email"
               {...register("email")}
               placeholder="your@email.com"
               className={cn(
-                "w-full rounded-lg border py-2.5 pl-10 pr-3.5 text-sm placeholder-gray-400 outline-none transition",
+                "w-full rounded-lg border py-2.5 pr-3.5 pl-10 text-sm placeholder-gray-400 transition outline-none",
                 "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
                 errors.email
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
