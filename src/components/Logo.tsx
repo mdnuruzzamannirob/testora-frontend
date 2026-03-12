@@ -20,7 +20,7 @@ export function Logo({ size = "md", className = "", asLink = true }: LogoProps) 
   const inner = (
     <div className={`flex items-center gap-2 ${className}`}>
       <div
-        className={`flex items-center justify-center rounded-lg bg-gradient-to-br from-teal-400 to-blue-500 ${s.box}`}
+        className={`flex items-center justify-center rounded-lg bg-linear-to-br from-teal-400 to-blue-500 ${s.box}`}
       >
         <GraduationCap className={`text-white ${s.icon}`} />
       </div>
