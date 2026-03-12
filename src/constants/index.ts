@@ -14,6 +14,11 @@ export const ROUTES = {
   PACKAGES: "/packages",
   MARKETPLACE: "/marketplace",
   CART: "/cart",
+  CHECKOUT: "/checkout",
+  ORDER_CONFIRMATION: "/order-confirmation",
+  ORDERS: "/orders",
+  MY_PACKAGES: "/my-packages",
+  BLOG: "/blog",
 } as const;
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api";
