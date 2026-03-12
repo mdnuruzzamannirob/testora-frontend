@@ -133,7 +133,7 @@ export default function PackagesPage() {
 
       {/* CTA */}
       <section className="bg-gradient-to-r from-teal-500 to-blue-600 py-12">
-        <div className="mx-auto max-w-xl px-4 sm:px-6 text-center">
+        <div className="mx-auto max-w-xl px-4 text-center sm:px-6">
           <h2 className="mb-2 text-2xl font-extrabold text-white">Ready to Start?</h2>
           <p className="mb-6 text-sm text-blue-100">
             Join thousands of students already using Testora to ace their exams.

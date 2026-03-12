@@ -109,7 +109,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     <main className="min-h-screen bg-white">
       <SiteNavbar />
 
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-1.5 text-xs text-gray-400">
           <Link href={ROUTES.BLOG} className="hover:text-blue-600">

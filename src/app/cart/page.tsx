@@ -19,7 +19,7 @@ export default function CartPage() {
     <main className="min-h-screen bg-gray-50">
       <SiteNavbar />
 
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         {items.length === 0 ? (
           /* ── Empty state ── */
           <div className="flex flex-col items-center justify-center py-28 text-center">

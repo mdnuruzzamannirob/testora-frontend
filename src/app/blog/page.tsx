@@ -16,8 +16,6 @@ const CATEGORIES = [
   "Student Tips",
 ];
 
-
-
 const CATEGORY_COLORS: Record<string, string> = {
   "Exam Preparation": "bg-blue-100 text-blue-700",
   "Study Guides": "bg-teal-100 text-teal-700",

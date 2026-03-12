@@ -243,5 +243,3 @@ export function SiteNavbar() {
     </nav>
   );
 }
-
-

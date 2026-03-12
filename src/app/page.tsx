@@ -597,7 +597,7 @@ function BlogPreview() {
 function CTA() {
   return (
     <section className="bg-linear-to-r from-teal-500 to-blue-600 py-16">
-      <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
+      <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
         <h2 className="mb-2 text-3xl font-extrabold text-white">Start Preparing Today</h2>
         <p className="mb-8 text-blue-100">
           Join thousands of students who are already achieving their exam goals with Testora

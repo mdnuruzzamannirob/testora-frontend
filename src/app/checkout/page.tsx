@@ -68,7 +68,6 @@ export default function CheckoutPage() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {/* Left column */}
             <div className="space-y-5 lg:col-span-2">
-
               {/* Customer Information */}
               <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
                 <h2 className="mb-5 text-base font-bold text-gray-900">Customer Information</h2>

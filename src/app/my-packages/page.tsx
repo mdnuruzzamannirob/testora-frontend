@@ -28,7 +28,7 @@ export default function MyPackagesPage() {
     <main className="min-h-screen bg-gray-50">
       <SiteNavbar />
 
-        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
+      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
         <h1 className="mb-1 text-2xl font-extrabold text-gray-900">My Packages</h1>
         <p className="mb-8 text-sm text-gray-500">View and manage your learning packages</p>
 

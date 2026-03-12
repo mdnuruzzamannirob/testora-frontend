@@ -82,7 +82,9 @@ const PRODUCTS: Record<
       { label: "Suitable For", value: "High school & university" },
     ],
     included: ["Compass", "Protractor", "2× Set Squares", "15cm Ruler", "30cm Ruler", "Hard Case"],
-    related: [{ id: "10", name: "Digital Protractor", category: "Geometry & Math Tools", price: 24.99 }],
+    related: [
+      { id: "10", name: "Digital Protractor", category: "Geometry & Math Tools", price: 24.99 },
+    ],
   },
   "4": {
     id: "4",
@@ -100,7 +102,14 @@ const PRODUCTS: Record<
       { label: "Dimensions", value: "16.3 × 7.7 × 1.1 cm" },
     ],
     included: ["1 Calculator", "1 Slide-on Case", "1 Battery"],
-    related: [{ id: "1", name: "Texas Instruments TI-84 Plus", category: "Scientific Calculators", price: 119.99 }],
+    related: [
+      {
+        id: "1",
+        name: "Texas Instruments TI-84 Plus",
+        category: "Scientific Calculators",
+        price: 119.99,
+      },
+    ],
   },
   "5": {
     id: "5",
@@ -117,7 +126,9 @@ const PRODUCTS: Record<
       { label: "Level", value: "High school & undergraduate" },
     ],
     included: ["1 Textbook", "Access Code for Online Resources"],
-    related: [{ id: "7", name: "Complete Mathematics Study Guide", category: "Books", price: 29.99 }],
+    related: [
+      { id: "7", name: "Complete Mathematics Study Guide", category: "Books", price: 29.99 },
+    ],
   },
   "6": {
     id: "6",
@@ -135,7 +146,9 @@ const PRODUCTS: Record<
       { label: "Size", value: "A4 (297 × 210 mm)" },
     ],
     included: ["3× A4 Ruled Notebooks"],
-    related: [{ id: "9", name: "Grid Notebook for Mathematics", category: "Notebooks", price: 8.99 }],
+    related: [
+      { id: "9", name: "Grid Notebook for Mathematics", category: "Notebooks", price: 8.99 },
+    ],
   },
   "7": {
     id: "7",
@@ -203,7 +216,14 @@ const PRODUCTS: Record<
       { label: "Power", value: "1× LR44 battery" },
     ],
     included: ["1 Digital Protractor", "1 Battery", "Carrying Pouch"],
-    related: [{ id: "3", name: "Professional Geometry Set", category: "Geometry & Math Tools", price: 16.99 }],
+    related: [
+      {
+        id: "3",
+        name: "Professional Geometry Set",
+        category: "Geometry & Math Tools",
+        price: 16.99,
+      },
+    ],
   },
   "11": {
     id: "11",
@@ -271,7 +291,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
     <main className="min-h-screen bg-white">
       <SiteNavbar />
 
-        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+      <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
         {/* Breadcrumb */}
         <Link
           href={ROUTES.MARKETPLACE}
