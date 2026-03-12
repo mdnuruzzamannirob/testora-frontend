@@ -148,7 +148,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             </div>
 
             {/* Hero image */}
-            <div className="mb-8 flex h-56 w-full items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-100">
+            <div className="mb-8 flex h-56 w-full items-center justify-center overflow-hidden rounded-2xl bg-linear-to-br from-blue-50 to-indigo-100">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-200/50">
                 <CalendarDays className="h-8 w-8 text-blue-500" />
               </div>
@@ -206,7 +206,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                       href={`${ROUTES.BLOG}/${r.slug}`}
                       className="flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm hover:shadow-md"
                     >
-                      <div className="flex h-28 items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
+                      <div className="flex h-28 items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100">
                         <CalendarDays className="h-8 w-8 text-blue-400/60" />
                       </div>
                       <div className="p-3">

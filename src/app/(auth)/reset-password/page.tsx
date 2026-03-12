@@ -105,7 +105,7 @@ function ResetPasswordContent() {
   }
 
   return (
-    <div className="w-full max-w-[400px]">
+    <div className="w-full max-w-100">
       {/* Icon */}
       <div className="mb-5 flex justify-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100">

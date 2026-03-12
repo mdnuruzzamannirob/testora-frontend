@@ -65,7 +65,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="w-full max-w-[400px]">
+    <div className="w-full max-w-100">
       <h1 className="mb-1 text-2xl font-bold text-gray-900">Create your Testora account</h1>
       <p className="mb-6 text-sm text-gray-500">Use one account across both Web and App</p>
 

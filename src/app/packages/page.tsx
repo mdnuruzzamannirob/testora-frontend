@@ -47,7 +47,7 @@ const PACKAGES = [
       "One reduced rate of choice",
       "Premium support",
     ],
-    note: "Does not include Architecture or electives exquisit",
+    note: "Does not include Architecture or electives exquisite",
     featured: true,
   },
 ];
@@ -132,7 +132,7 @@ export default function PackagesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-teal-500 to-blue-600 py-12">
+      <section className="bg-linear-to-r from-teal-500 to-blue-600 py-12">
         <div className="mx-auto max-w-xl px-4 text-center sm:px-6">
           <h2 className="mb-2 text-2xl font-extrabold text-white">Ready to Start?</h2>
           <p className="mb-6 text-sm text-blue-100">

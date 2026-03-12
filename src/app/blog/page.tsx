@@ -87,7 +87,7 @@ export default function BlogPage() {
             href={`${ROUTES.BLOG}/${featured.slug}`}
             className="mb-8 flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:shadow-md md:flex-row"
           >
-            <div className="flex h-48 w-full items-center justify-center bg-gradient-to-br from-blue-100 to-indigo-200 md:h-auto md:w-80 md:shrink-0">
+            <div className="flex h-48 w-full items-center justify-center bg-linear-to-br from-blue-100 to-indigo-200 md:h-auto md:w-80 md:shrink-0">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-500/20">
                 <CalendarDays className="h-8 w-8 text-blue-600" />
               </div>
@@ -128,7 +128,7 @@ export default function BlogPage() {
               className="flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
               <div
-                className={`flex h-40 items-center justify-center bg-gradient-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]}`}
+                className={`flex h-40 items-center justify-center bg-linear-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]}`}
               >
                 <CalendarDays className="h-10 w-10 text-blue-400/60" />
               </div>

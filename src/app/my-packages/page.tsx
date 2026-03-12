@@ -106,7 +106,7 @@ export default function MyPackagesPage() {
         </div>
 
         {/* Need More Packages CTA */}
-        <section className="rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 p-8 text-center text-white shadow-lg">
+        <section className="rounded-2xl bg-linear-to-br from-blue-600 to-blue-500 p-8 text-center text-white shadow-lg">
           <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20">
             <Package className="h-7 w-7 text-white" />
           </div>

@@ -80,7 +80,7 @@ export default function ProfilePage() {
           {/* Main Content */}
           <div className="flex-1 space-y-6">
             {/* Blue Header Card */}
-            <div className="rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 p-6 text-white shadow-md">
+            <div className="rounded-2xl bg-linear-to-br from-blue-600 to-blue-500 p-6 text-white shadow-md">
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-white/20">
                   <User className="h-8 w-8 text-white" />
