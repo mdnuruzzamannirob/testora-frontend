@@ -1,6 +1,7 @@
 import { Check, Monitor, ArrowRight } from "lucide-react";
 import { ROUTES } from "@/constants";
 import Link from "next/link";
+import PageHero from "@/components/common/PageHero";
 
 const PACKAGES = [
   {
@@ -53,22 +54,17 @@ const PACKAGES = [
 export default function PackagesPage() {
   return (
     <section className="flex-1">
-      {/* Hero banner */}
-      <section className="border-b border-gray-100 py-14 text-center">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6">
-          <h1 className="text-3xl font-extrabold text-gray-900">Exam Preparation Packages</h1>
-          <p className="mt-3 text-sm text-gray-500">
-            Choose the package that fits your exam preparation needs. All packages include mobile
-            app access.
-          </p>
-          <div className="mt-6">
-            <button className="inline-flex items-center gap-2 rounded-lg border border-blue-300 bg-blue-50 px-5 py-2.5 text-sm font-medium text-blue-700 hover:bg-blue-100">
-              <Monitor className="h-4 w-4" />
-              Purchase on website / Learn in mobile app
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* Hero */}
+      <PageHero
+        title="Exam Preparation Packages"
+        description="Choose the package that fits your exam preparation needs. All packages include mobile
+            app access."
+      >
+        <button className="from-primary to-primary hover:from-primary/90 hover:to-primary2/90 inline-flex items-center gap-2 rounded-md bg-linear-to-br px-5 py-2.5 text-sm font-medium text-white transition duration-200">
+          <Monitor className="h-4 w-4" />
+          Purchase on website / Learn in mobile app
+        </button>
+      </PageHero>
 
       {/* Packages grid */}
       <section className="py-16">

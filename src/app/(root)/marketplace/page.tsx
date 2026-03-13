@@ -6,6 +6,7 @@ import { Search, ShoppingCart, SlidersHorizontal, X } from "lucide-react";
 import { ROUTES } from "@/constants";
 import { useAppDispatch } from "@/store/hooks";
 import { addToCart } from "@/store/slices/cartSlice";
+import PageHero from "@/components/common/PageHero";
 
 const CATEGORIES = [
   "All Products",
@@ -145,15 +146,11 @@ export default function MarketplacePage() {
 
   return (
     <section className="flex-1">
-      {/* Page header */}
-      <div className="border-b border-gray-100 bg-white px-4 py-6 sm:px-6 sm:py-8">
-        <div className="mx-auto max-w-7xl">
-          <h1 className="text-3xl font-extrabold text-gray-900">Marketplace</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Essential tools for school and university students
-          </p>
-        </div>
-      </div>
+      {/* Hero */}
+      <PageHero
+        title="Marketplace"
+        description="Essential tools for school and university students"
+      />
 
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8">
         {/* Search + meta */}

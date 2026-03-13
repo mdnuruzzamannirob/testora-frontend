@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CalendarDays, Clock, ChevronRight } from "lucide-react";
 import { ROUTES } from "@/constants";
 import { BLOG_POSTS } from "@/lib/blog-data";
+import PageHero from "@/components/common/PageHero";
 
 const CATEGORIES = [
   "All Articles",
@@ -46,17 +47,13 @@ export default function BlogPage() {
 
   return (
     <section className="flex-1">
-      {/* Header */}
-      <div className="border-b border-gray-100 px-4 py-8 sm:px-6 sm:py-10">
-        <div className="mx-auto max-w-6xl">
-          <h1 className="text-3xl font-extrabold text-gray-900">Blog</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            News, updates and guidance related to school exams and university entrance tests
-          </p>
-        </div>
-      </div>
+      {/* Hero */}
+      <PageHero
+        title="Blog"
+        description="News, updates and guidance related to school exams and university entrance tests"
+      />
 
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
+      <div className="app-container py-8 sm:py-10">
         {/* Category tabs */}
         <div className="mb-8 flex flex-wrap gap-2">
           {CATEGORIES.map((c) => (
@@ -68,7 +65,7 @@ export default function BlogPage() {
               }}
               className={`rounded-lg px-4 py-1.5 text-sm font-medium transition ${
                 activeCategory === c
-                  ? "bg-blue-600 text-white"
+                  ? "bg-primary text-white"
                   : "bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >
@@ -81,9 +78,9 @@ export default function BlogPage() {
         {activeCategory === "All Articles" && (
           <Link
             href={`${ROUTES.BLOG}/${featured.slug}`}
-            className="mb-8 flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition hover:shadow-md md:flex-row"
+            className="mb-8 flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-xs md:flex-row"
           >
-            <div className="flex h-48 w-full items-center justify-center bg-linear-to-br from-blue-100 to-indigo-200 md:h-auto md:w-80 md:shrink-0">
+            <div className="from-primary/10 to-primary2/10 flex h-48 w-full items-center justify-center bg-linear-to-br md:h-auto md:w-80 md:shrink-0">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-500/20">
                 <CalendarDays className="h-8 w-8 text-blue-600" />
               </div>
@@ -97,20 +94,23 @@ export default function BlogPage() {
               </span>
               <h2 className="mb-2 text-xl font-extrabold text-gray-900">{featured.title}</h2>
               <p className="mb-4 text-sm text-gray-500">{featured.excerpt}</p>
-              <div className="flex items-center gap-4 text-xs text-gray-400">
-                <span className="flex items-center gap-1">
-                  <CalendarDays className="h-3.5 w-3.5" />
-                  {featured.date}
-                </span>
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3.5 w-3.5" />
-                  {featured.readTime}
+              <div className="flex items-center justify-between gap-2">
+                {" "}
+                <div className="flex items-center gap-4 text-xs text-gray-400">
+                  <span className="flex items-center gap-1">
+                    <CalendarDays className="h-3.5 w-3.5" />
+                    {featured.date}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-3.5 w-3.5" />
+                    {featured.readTime}
+                  </span>
+                </div>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:underline">
+                  Read Article
+                  <ChevronRight className="h-4 w-4" />
                 </span>
               </div>
-              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:underline">
-                Read Article
-                <ChevronRight className="h-4 w-4" />
-              </span>
             </div>
           </Link>
         )}

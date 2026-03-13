@@ -1,21 +1,16 @@
 import { Brain, Monitor, ArrowRight } from "lucide-react";
 import { ROUTES } from "@/constants";
 import Link from "next/link";
+import PageHero from "@/components/common/PageHero";
 
 export default function AboutPage() {
   return (
     <section className="flex-1">
       {/* Hero */}
-      <section className="bg-blue-50/60 py-16 text-center">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6">
-          <h1 className="text-4xl font-extrabold text-gray-900">About Testora</h1>
-          <p className="mt-4 text-base text-gray-500">
-            Testora is Kosovo&apos;s leading educational platform dedicated to helping students
-            excel in their most important exams through comprehensive preparation tools and
-            resources.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        title="About Testora"
+        description="Testora is Kosovo's leading educational platform dedicated to helping students excel in their most important exams through comprehensive preparation tools and resources."
+      />
 
       {/* Mission + Vision */}
       <section className="py-16">

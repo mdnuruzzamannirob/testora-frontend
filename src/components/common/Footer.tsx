@@ -45,7 +45,7 @@ export default function Footer() {
           {/* Columns */}
           {COLUMNS.map((col) => (
             <div key={col.heading}>
-              <h4 className="mb-3 text-sm font-semibold tracking-widest text-gray-900 uppercase">
+              <h4 className="mb-3 text-sm font-semibold tracking-widest text-gray-500 uppercase">
                 {col.heading}
               </h4>
               <ul className="flex flex-col gap-1.5">
