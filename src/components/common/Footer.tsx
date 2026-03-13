@@ -31,28 +31,30 @@ const COLUMNS = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-100 bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-12">
+    <footer className="border-t border-gray-100 pt-16 pb-10">
+      <div className="app-container">
         <div className="mb-10 grid grid-cols-2 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <div className="mb-3">
-              <Logo size="sm" />
-            </div>
-            <p className="text-xs text-gray-400">
+            <Logo />
+
+            <p className="mt-3 text-sm text-gray-400">
               Your trusted partner in exam preparation and academic success.
             </p>
           </div>
           {/* Columns */}
           {COLUMNS.map((col) => (
             <div key={col.heading}>
-              <h4 className="mb-3 text-xs font-semibold tracking-wider text-gray-900 uppercase">
+              <h4 className="mb-3 text-sm font-semibold tracking-widest text-gray-900 uppercase">
                 {col.heading}
               </h4>
               <ul className="flex flex-col gap-1.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <Link href={l.href} className="text-xs text-gray-500 hover:text-gray-800">
+                    <Link
+                      href={l.href}
+                      className="text-sm font-medium text-gray-500 duration-200 hover:text-gray-900"
+                    >
                       {l.label}
                     </Link>
                   </li>

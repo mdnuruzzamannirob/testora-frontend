@@ -1,4 +1,5 @@
 import { ChevronRight } from "lucide-react";
+import Titlebar from "../common/Titlebar";
 
 const posts = [
   {
@@ -29,29 +30,26 @@ const posts = [
 
 function Blog() {
   return (
-    <section className="py-16">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mb-10 text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900">Blog Preview</h2>
-          <p className="mt-2 text-sm text-gray-500">
-            Stay informed with the latest exam preparation tips and educational insights
-          </p>
-        </div>
+    <section className="bg-blue-50/60 py-16">
+      <div className="app-container">
+        <Titlebar
+          title="Latest from Our Blog"
+          description="Tips, strategies, and insights to help you succeed"
+        />
+
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {posts.map((p) => (
             <div
               key={p.title}
-              className="flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+              className="flex flex-col overflow-hidden rounded-xl border-gray-100 bg-white shadow-sm"
             >
-              <div className={`h-40 bg-linear-to-br ${p.color}`} />
+              <div className={`h-48 bg-linear-to-br ${p.color}`} />
               <div className="flex flex-1 flex-col p-5">
-                <h4 className="mb-2 text-sm leading-snug font-bold text-gray-900">{p.title}</h4>
-                <p className="mb-3 flex-1 text-xs leading-relaxed text-gray-500">{p.excerpt}</p>
+                <h4 className="mb-2 font-bold text-gray-900">{p.title}</h4>
+                <p className="mb-3 flex-1 text-sm text-gray-500">{p.excerpt}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400">
-                    {p.date} · {p.readTime}
-                  </span>
-                  <button className="flex items-center gap-1 text-xs font-medium text-blue-600 hover:underline">
+                  <span className="text-xs text-gray-400">{p.date}</span>
+                  <button className="text-primary flex items-center gap-1 text-xs font-medium hover:underline">
                     Read More <ChevronRight className="h-3 w-3" />
                   </button>
                 </div>

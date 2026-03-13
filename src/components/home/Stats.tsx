@@ -1,19 +1,53 @@
+import { BookOpen, FileText, Layers, Brain } from "lucide-react";
+
 const Stats = () => {
   const stats = [
-    { value: "20,000+", label: "Practice Questions" },
-    { value: "50+", label: "Full Exam Tests" },
-    { value: "15+", label: "Subjects Covered" },
-    { value: "3", label: "Practice Modes" },
+    {
+      value: "20,000+",
+      label: "Practice Questions",
+      icon: BookOpen,
+    },
+    {
+      value: "50+",
+      label: "Full Exam Tests",
+      icon: FileText,
+    },
+    {
+      value: "15+",
+      label: "Subjects Covered",
+      icon: Layers,
+    },
+    {
+      value: "3",
+      label: "Practice Modes",
+      icon: Brain,
+    },
   ];
+
   return (
-    <section className="border-y border-gray-100 bg-gray-50/70 py-10">
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-4 sm:px-6 md:grid-cols-4">
-        {stats.map((s) => (
-          <div key={s.label} className="rounded-xl bg-white p-5 text-center shadow-sm">
-            <p className="text-2xl font-extrabold text-blue-600">{s.value}</p>
-            <p className="mt-1 text-xs text-gray-500">{s.label}</p>
-          </div>
-        ))}
+    <section className="py-20">
+      <div className="app-container grid grid-cols-2 gap-6 md:grid-cols-4">
+        {stats.map((s) => {
+          const Icon = s.icon;
+
+          return (
+            <div
+              key={s.label}
+              className="group rounded-2xl bg-blue-50/60 p-6 text-center shadow-sm"
+            >
+              {/* icon */}
+              <div className="text-primary mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
+                <Icon className="h-5 w-5" />
+              </div>
+
+              {/* value */}
+              <p className="text-primary text-3xl font-extrabold">{s.value}</p>
+
+              {/* label */}
+              <p className="mt-1 text-sm text-gray-500">{s.label}</p>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

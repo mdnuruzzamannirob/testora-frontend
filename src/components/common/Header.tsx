@@ -48,7 +48,7 @@ export default function Header() {
 
   return (
     <nav className="sticky top-0 z-50 border-b border-gray-100 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6">
+      <div className="app-container flex items-center justify-between py-3.5">
         <Logo size="md" />
 
         {/* Desktop nav links */}
@@ -57,7 +57,7 @@ export default function Header() {
             <Link
               key={l.label}
               href={l.href}
-              className="text-sm text-gray-600 transition hover:text-gray-900"
+              className="text-sm font-medium text-gray-500 duration-200 hover:text-gray-900"
             >
               {l.label}
             </Link>
@@ -65,11 +65,11 @@ export default function Header() {
         </div>
 
         {/* Right side: cart + user/auth + hamburger */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-2">
           <Link href={ROUTES.CART} className="relative p-1.5 text-gray-600 hover:text-gray-900">
             <ShoppingCart className="h-5 w-5" />
             {cartCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white">
+              <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white duration-200">
                 {cartCount}
               </span>
             )}
@@ -138,16 +138,16 @@ export default function Header() {
               )}
             </div>
           ) : (
-            <div className="hidden items-center gap-2 sm:flex">
+            <div className="hidden items-center gap-2 md:flex">
               <Link
                 href={ROUTES.LOGIN}
-                className="text-sm font-medium text-gray-700 hover:text-gray-900"
+                className="hover:text-primary rounded-md px-4 py-2 text-sm font-medium text-gray-600 duration-200 hover:bg-blue-50"
               >
                 Login
               </Link>
               <Link
                 href={ROUTES.REGISTER}
-                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
+                className="rounded-md bg-linear-to-r from-[#2360A5] to-[#4584CA] px-4 py-2 text-sm font-medium text-white transition duration-200 hover:from-[#2360A5]/90 hover:to-[#4584CA]/90"
               >
                 Register
               </Link>
@@ -181,18 +181,18 @@ export default function Header() {
             ))}
           </div>
           {!isAuthenticated && (
-            <div className="mt-3 flex gap-2 border-t border-gray-100 pt-3">
+            <div className="mt-3 flex gap-3 border-t border-gray-100 pt-3">
               <Link
                 href={ROUTES.LOGIN}
                 onClick={() => setMobileOpen(false)}
-                className="flex-1 rounded-lg border border-gray-200 py-2.5 text-center text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="flex-1 rounded-md border border-gray-200 py-2.5 text-center text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
                 Login
               </Link>
               <Link
                 href={ROUTES.REGISTER}
                 onClick={() => setMobileOpen(false)}
-                className="flex-1 rounded-lg bg-blue-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-blue-700"
+                className="flex-1 rounded-md bg-blue-600 py-2.5 text-center text-sm font-semibold text-white hover:bg-blue-700"
               >
                 Register
               </Link>

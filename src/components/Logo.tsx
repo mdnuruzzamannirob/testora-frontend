@@ -9,9 +9,9 @@ interface LogoProps {
 }
 
 const sizes = {
-  sm: { box: "h-6 w-6", icon: "h-3.5 w-3.5", text: "text-xs" },
-  md: { box: "h-8 w-8", icon: "h-4 w-4", text: "text-[15px]" },
-  lg: { box: "h-10 w-10", icon: "h-5 w-5", text: "text-lg" },
+  sm: { box: "h-6 w-6", icon: "h-3.5 w-3.5", text: "text-base" },
+  md: { box: "h-8 w-8", icon: "h-4 w-4", text: "text-lg" },
+  lg: { box: "h-10 w-10", icon: "h-5 w-5", text: "text-xl" },
 };
 
 export function Logo({ size = "md", className = "", asLink = true }: LogoProps) {
