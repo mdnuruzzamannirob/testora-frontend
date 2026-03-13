@@ -3,8 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { CalendarDays, Clock, ChevronRight } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
 import { BLOG_POSTS } from "@/lib/blog-data";
 
@@ -47,9 +45,7 @@ export default function BlogPage() {
   const visible = filtered.slice(0, visibleCount);
 
   return (
-    <main className="min-h-screen bg-white">
-      <SiteNavbar />
-
+    <section className="flex-1">
       {/* Header */}
       <div className="border-b border-gray-100 px-4 py-8 sm:px-6 sm:py-10">
         <div className="mx-auto max-w-6xl">
@@ -167,8 +163,6 @@ export default function BlogPage() {
           </div>
         )}
       </div>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

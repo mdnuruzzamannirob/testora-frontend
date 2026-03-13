@@ -30,7 +30,7 @@ const posts = [
 
 function Blog() {
   return (
-    <section className="bg-blue-50/60 py-16">
+    <section className="bg-blue-50/60 py-16 md:py-20">
       <div className="app-container">
         <Titlebar
           title="Latest from Our Blog"

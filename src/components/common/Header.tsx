@@ -12,10 +12,12 @@ import {
   Menu,
   X,
 } from "lucide-react";
-import { Logo } from "@/components/Logo";
+import { Logo } from "@/components/common/Logo";
 import { ROUTES } from "@/constants";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { logout } from "@/store/slices/authSlice";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
   { label: "Home", href: ROUTES.HOME },
@@ -26,6 +28,7 @@ const NAV_LINKS = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { isAuthenticated, user } = useAppSelector((s) => s.auth);
   const cartItems = useAppSelector((s) => s.cart.items);
@@ -57,7 +60,10 @@ export default function Header() {
             <Link
               key={l.label}
               href={l.href}
-              className="text-sm font-medium text-gray-500 duration-200 hover:text-gray-900"
+              className={cn(
+                "text-sm font-medium duration-200",
+                pathname === l.href ? "text-primary" : "text-gray-500 hover:text-gray-900"
+              )}
             >
               {l.label}
             </Link>

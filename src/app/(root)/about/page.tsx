@@ -1,14 +1,10 @@
-import { Brain, Monitor, Check, ArrowRight } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
+import { Brain, Monitor, ArrowRight } from "lucide-react";
 import { ROUTES } from "@/constants";
 import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white">
-      <SiteNavbar />
-
+    <section className="flex-1">
       {/* Hero */}
       <section className="bg-blue-50/60 py-16 text-center">
         <div className="mx-auto max-w-2xl px-4 sm:px-6">
@@ -167,8 +163,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

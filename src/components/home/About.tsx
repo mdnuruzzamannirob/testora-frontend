@@ -3,7 +3,7 @@ import Titlebar from "../common/Titlebar";
 
 const About = () => {
   return (
-    <section className="app-container py-16">
+    <section className="app-container py-16 md:py-20">
       <Titlebar
         title="About Testora"
         description="Empowering students to achieve their academic goals through innovative learning

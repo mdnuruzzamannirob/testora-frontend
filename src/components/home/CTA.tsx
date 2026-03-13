@@ -5,8 +5,8 @@ import Titlebar from "../common/Titlebar";
 
 function CTA() {
   return (
-    <section className="bg-blue-50 py-16">
-      <div className="app-container text-center">
+    <section className="bg-blue-50/60 py-16 md:py-20">
+      <div className="app-container rounded-xl bg-white py-16 text-center md:py-20">
         <Titlebar
           title="Start Preparing Today"
           description="Join thousands of students who are already achieving their exam goals with Testora"

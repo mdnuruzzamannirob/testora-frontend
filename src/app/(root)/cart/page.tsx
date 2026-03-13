@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { ArrowLeft, ShoppingBag, ShieldCheck, Truck, Mail, Trash2 } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { removeFromCart, updateQuantity } from "@/store/slices/cartSlice";
@@ -16,9 +14,7 @@ export default function CartPage() {
   const total = subtotal + shipping;
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <SiteNavbar />
-
+    <section className="flex-1">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         {items.length === 0 ? (
           /* ── Empty state ── */
@@ -157,8 +153,6 @@ export default function CartPage() {
           </>
         )}
       </div>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

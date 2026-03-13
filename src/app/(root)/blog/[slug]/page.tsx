@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CalendarDays, Clock, User, ChevronRight, Zap } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
 import { BLOG_POSTS } from "@/lib/blog-data";
 
@@ -106,9 +104,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   };
 
   return (
-    <main className="min-h-screen bg-white">
-      <SiteNavbar />
-
+    <section className="flex-1">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-1.5 text-xs text-gray-400">
@@ -281,8 +277,6 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           </aside>
         </div>
       </div>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

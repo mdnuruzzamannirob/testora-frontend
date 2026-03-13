@@ -3,7 +3,7 @@ import Titlebar from "../common/Titlebar";
 
 const AppScreens = () => {
   return (
-    <section className="py-20">
+    <section className="py-16 md:py-20">
       <div className="app-container">
         <Titlebar
           title="Experience Our Mobile App"

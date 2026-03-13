@@ -25,7 +25,7 @@ const Stats = () => {
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-16 md:py-20">
       <div className="app-container grid grid-cols-2 gap-6 md:grid-cols-4">
         {stats.map((s) => {
           const Icon = s.icon;

@@ -32,7 +32,7 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="app-container py-16">
+    <section className="app-container py-16 md:py-20">
       <Titlebar
         title="How It Works"
         description="Start your exam preparation journey in four simple steps"
