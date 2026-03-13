@@ -3,8 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Search, ShoppingCart, SlidersHorizontal, X } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
 import { useAppDispatch } from "@/store/hooks";
 import { addToCart } from "@/store/slices/cartSlice";
@@ -146,9 +144,7 @@ export default function MarketplacePage() {
   const visible = filtered.slice(0, visibleCount);
 
   return (
-    <main className="min-h-screen bg-white">
-      <SiteNavbar />
-
+    <section className="flex-1">
       {/* Page header */}
       <div className="border-b border-gray-100 bg-white px-4 py-6 sm:px-6 sm:py-8">
         <div className="mx-auto max-w-7xl">
@@ -331,8 +327,6 @@ export default function MarketplacePage() {
           </div>
         </div>
       </div>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

@@ -3,8 +3,6 @@
 import { use, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ShoppingCart, Heart, Truck, ShieldCheck, RefreshCw, Check } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
 import { useAppDispatch } from "@/store/hooks";
 import { addToCart } from "@/store/slices/cartSlice";
@@ -288,9 +286,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
   }
 
   return (
-    <main className="min-h-screen bg-white">
-      <SiteNavbar />
-
+    <section className="flex-1">
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
         {/* Breadcrumb */}
         <Link
@@ -466,8 +462,6 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           </div>
         )}
       </div>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

@@ -1,6 +1,4 @@
 import { Check, Monitor, ArrowRight } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
 import Link from "next/link";
 
@@ -54,9 +52,7 @@ const PACKAGES = [
 
 export default function PackagesPage() {
   return (
-    <main className="min-h-screen bg-white">
-      <SiteNavbar />
-
+    <section className="flex-1">
       {/* Hero banner */}
       <section className="border-b border-gray-100 py-14 text-center">
         <div className="mx-auto max-w-2xl px-4 sm:px-6">
@@ -152,8 +148,6 @@ export default function PackagesPage() {
           </div>
         </div>
       </section>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

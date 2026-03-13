@@ -3,8 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, CreditCard, Truck, ShieldCheck } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { clearCart } from "@/store/slices/cartSlice";
@@ -50,9 +48,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <SiteNavbar />
-
+    <section className="flex-1">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
         <Link
           href={ROUTES.CART}
@@ -314,8 +310,6 @@ export default function CheckoutPage() {
           </div>
         </form>
       </div>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

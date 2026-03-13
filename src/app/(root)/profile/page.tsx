@@ -3,8 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { User, ShoppingBag, Package, LogOut, Lock, Mail, CheckCircle } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { logout } from "@/store/slices/authSlice";
 import { ROUTES } from "@/constants";
@@ -29,9 +27,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <SiteNavbar />
-
+    <section className="flex-1">
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
         <h1 className="mb-1 text-2xl font-extrabold text-gray-900">Account / Profile</h1>
         <p className="mb-8 text-sm text-gray-500">
@@ -236,8 +232,6 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-
-      <SiteFooter />
-    </main>
+    </section>
   );
 }

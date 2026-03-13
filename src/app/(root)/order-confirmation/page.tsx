@@ -3,8 +3,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { CheckCircle, ShoppingBag, MapPin, CreditCard, Package, Home } from "lucide-react";
-import { SiteNavbar } from "@/components/SiteNavbar";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ROUTES } from "@/constants";
 import { useSearchParams } from "next/navigation";
 
@@ -152,14 +150,12 @@ function OrderConfirmedContent() {
 
 export default function OrderConfirmationPage() {
   return (
-    <main className="min-h-screen bg-gray-50">
-      <SiteNavbar />
+    <section className="flex-1">
       <Suspense
         fallback={<div className="py-20 text-center text-sm text-gray-400">Loading...</div>}
       >
         <OrderConfirmedContent />
       </Suspense>
-      <SiteFooter />
-    </main>
+    </section>
   );
 }
