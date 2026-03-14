@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const Banner = () => {
   return (
-    <section className="relative flex items-center overflow-hidden bg-blue-50/60 py-16 md:py-24">
+    <section className="from-primary/10 relative flex items-center overflow-hidden bg-linear-to-b to-white py-16 md:py-24">
       <div className="app-container flex size-full flex-col-reverse gap-12 md:flex-row md:items-center md:gap-16">
         {/* Left text */}
         <div className="flex-1 space-y-6">

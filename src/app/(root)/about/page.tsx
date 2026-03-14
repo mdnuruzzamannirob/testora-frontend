@@ -1,163 +1,184 @@
-import { Brain, Monitor, ArrowRight } from "lucide-react";
-import { ROUTES } from "@/constants";
-import Link from "next/link";
+import {
+  Monitor,
+  CheckCircle,
+  Download,
+  GraduationCap,
+  Target,
+  Users,
+  Activity,
+} from "lucide-react";
 import PageHero from "@/components/common/PageHero";
 
 export default function AboutPage() {
   return (
-    <section className="flex-1">
-      {/* Hero */}
+    <section className="flex-1 bg-slate-50">
       <PageHero
         title="About Testora"
         description="Testora is Kosovo's leading educational platform dedicated to helping students excel in their most important exams through comprehensive preparation tools and resources."
       />
 
-      {/* Mission + Vision */}
-      <section className="py-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-blue-100 bg-white p-7 shadow-sm">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100">
-                <Brain className="h-5 w-5 text-blue-600" />
-              </div>
-              <h2 className="mb-2 text-lg font-bold text-gray-900">Our Mission</h2>
-              <p className="text-sm text-gray-500">
-                We believe that every student deserves access to high-quality exam preparation
-                resources. Testora was created to bridge the gap between traditional education and
-                modern learning needs, providing students with the tools they need to succeed in
-                Semi-Matura, Matura, and university entrance examinations.
-              </p>
-              <p className="mt-3 text-sm text-gray-500">
-                Our platform combines expert-designed content, interactive practice tests, and
-                comprehensive study materials to create a learning experience that is both effective
-                and engaging. We understand the pressure students face, and we&apos;re committed to
-                making exam preparation more accessible, structured, and results-oriented.
-              </p>
-            </div>
-            <div className="rounded-xl border border-teal-100 bg-white p-7 shadow-sm">
-              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-teal-100">
-                <Monitor className="h-5 w-5 text-teal-600" />
-              </div>
-              <h2 className="mb-2 text-lg font-bold text-gray-900">Our Vision</h2>
-              <p className="text-sm text-gray-500">
-                To become the leading educational technology platform for transforming how students
-                in Kosovo and the region prepare for their most important exams — making
-                high-quality preparation accessible to every student regardless of location or
-                background.
-              </p>
-            </div>
+      <div className="app-container flex flex-col gap-6 py-10">
+        {/* Our Mission */}
+        <div className="border-l-primary rounded-xl border border-l-[3px] bg-white p-6">
+          <div className="mb-4 flex size-10 items-center justify-center rounded-xl bg-blue-50">
+            <GraduationCap className="text-primary size-4.5" />
           </div>
+          <h2 className="mb-2 text-lg font-semibold text-slate-900">Our Mission</h2>
+          <p className="mb-4 text-sm leading-relaxed text-slate-500">
+            Our mission is to help students prepare better for the exams that shape their academic
+            future.
+          </p>
+          <ul className="flex flex-col gap-2">
+            {[
+              "Practice tests based on real exam structures",
+              "Subject-based quizzes for quick practice",
+              "Organized learning materials",
+              "The ability to track progress during preparation",
+            ].map((item) => (
+              <li
+                key={item}
+                className="before:bg-primary relative pl-4 text-[13.5px] leading-snug text-slate-500 before:absolute before:top-1.75 before:left-0 before:size-1.25 before:rounded-full before:content-['']"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
         </div>
-      </section>
 
-      {/* What We Support */}
-      <section className="bg-gray-50/70 py-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 className="mb-8 text-center text-3xl font-extrabold text-gray-900">
-            What We Support
-          </h2>
+        {/* What We Support */}
+        <div className="rounded-xl border bg-white p-6">
+          <h2 className="mb-1.5 text-lg font-semibold text-slate-900">What We Support</h2>
+          <p className="mb-5 text-sm text-slate-400">
+            Three key academic milestones we prepare students for.
+          </p>
           <div className="flex flex-col gap-5">
             {[
               {
                 num: 1,
                 title: "Semi-Matura Preparation",
-                desc: "Complete preparation materials for the Semi-Matura examination, including practice tests, study guides, and topic-specific resources covering all required subjects.",
+                desc: "Practice materials and tests that help students understand the structure of the Semi-Matura exam and improve their knowledge in key subjects.",
               },
               {
                 num: 2,
                 title: "Matura Examination",
-                desc: "Comprehensive support for Matura exam preparation with updated content aligned with current examination standards including past papers and realistic simulations.",
+                desc: "Structured preparation for the national Matura exam through quizzes, practice tests, and study materials that help students feel more confident.",
               },
               {
                 num: 3,
                 title: "University Entrance Exams",
-                desc: "Specialized preparation for university entrance examinations across multiple faculties, helping students secure admission to their preferred programs.",
+                desc: "Preparation for university entrance exams across different faculties through practice questions that reflect real admission test structures.",
               },
-            ].map((item) => (
-              <div
-                key={item.num}
-                className="flex items-start gap-5 rounded-xl bg-white p-5 shadow-sm"
-              >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
-                  {item.num}
+            ].map(({ num, title, desc }) => (
+              <div key={num} className="flex gap-4">
+                <div className="bg-primary mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold text-white">
+                  {num}
                 </div>
                 <div>
-                  <p className="font-semibold text-gray-900">{item.title}</p>
-                  <p className="mt-1 text-sm text-gray-500">{item.desc}</p>
+                  <h4 className="mb-1 text-[14.5px] font-semibold text-slate-900">{title}</h4>
+                  <p className="text-[13px] leading-relaxed text-slate-500">{desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Our Values */}
-      <section className="py-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 className="mb-8 text-center text-3xl font-extrabold text-gray-900">Our Values</h2>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {/* Our Values */}
+        <div>
+          <h2 className="mb-4 text-center text-xl font-semibold text-slate-900">Our Values</h2>
+          <div className="grid grid-cols-3 gap-3.5">
             {[
               {
-                icon: "🎯",
+                icon: <Target className="text-primary size-4" />,
                 title: "Focused Preparation",
-                desc: "Comprehensive exam preparation tailored specifically for Semi-Matura, complete Matura and university entrance exams in Kosovo.",
+                desc: "Designed to help students focus on questions and topics that matter most for real exams.",
               },
               {
-                icon: "🎓",
-                title: "Student-Centered",
-                desc: "Built by educators who understand the challenges students face and designed to make exam preparation accessible and effective.",
+                icon: <Users className="text-primary size-4" />,
+                title: "Built for Students",
+                desc: "Every feature is crafted to make exam preparation simpler and easier to understand.",
               },
               {
-                icon: "📈",
-                title: "Proven Results",
-                desc: "Trusted by thousands of students across Kosovo to improve their exam performance and achieve their academic goals.",
+                icon: <Activity className="text-primary size-4" />,
+                title: "Real Results",
+                desc: "Track progress and better understand preparation levels through actionable insights.",
               },
-            ].map((v) => (
-              <div
-                key={v.title}
-                className="rounded-xl border border-gray-100 bg-white p-6 text-center shadow-sm"
-              >
-                <span className="mb-3 block text-3xl">{v.icon}</span>
-                <h3 className="mb-2 font-bold text-gray-900">{v.title}</h3>
-                <p className="text-sm text-gray-500">{v.desc}</p>
+            ].map(({ icon, title, desc }) => (
+              <div key={title} className="rounded-2xl border bg-white p-5">
+                <div className="mb-3 flex size-8 items-center justify-center rounded-[8px] bg-blue-50">
+                  {icon}
+                </div>
+                <h4 className="mb-1.5 text-[13.5px] font-semibold text-slate-900">{title}</h4>
+                <p className="text-[12px] leading-relaxed text-slate-500">{desc}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
 
-      {/* How Testora Works CTA */}
-      <section className="bg-blue-600 py-14">
-        <div className="mx-auto max-w-3xl px-4 sm:px-6">
-          <h2 className="mb-6 text-xl font-bold text-white">How Testora Works</h2>
-          <ol className="mb-8 flex flex-col gap-3">
+        {/* Why Students Choose */}
+        <div className="border-l-primary rounded-2xl border border-l-[3px] bg-white px-7 py-6">
+          <div className="mb-4 flex size-10 items-center justify-center rounded-xl bg-blue-50">
+            <CheckCircle className="text-primary size-4.5" />
+          </div>
+          <h2 className="mb-3 text-lg font-semibold text-slate-900">Why Students Choose Testora</h2>
+          <ul className="flex flex-col gap-2">
             {[
-              "Browse and purchase exam preparation packages on our website.",
-              "Download the Testora mobile app on your device.",
-              "Access your purchased content including tests, quizzes, and study materials.",
-              "Practice regularly, track your progress, and prepare effectively for exam day.",
+              "Practice questions based on real exam structures",
+              "Learning content organized by subjects",
+              "Progress tracking during preparation",
+              "Access through both web and mobile app",
+            ].map((item) => (
+              <li
+                key={item}
+                className="before:bg-primary relative pl-4 text-[13.5px] leading-snug text-slate-500 before:absolute before:top-1.75 before:left-0 before:size-1.25 before:rounded-full before:content-['']"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* How It Works */}
+        <div className="via-primary from-primary to-primary2 rounded-2xl bg-linear-to-br p-7">
+          <h2 className="mb-5 text-lg font-semibold text-white">How Testora Works</h2>
+          <ol className="mb-6 flex flex-col gap-2.5">
+            {[
+              "Choose the preparation package for the exam you want.",
+              "Download the Testora mobile application.",
+              "Log into your account and access quizzes, tests, and materials.",
+              "Practice regularly and track your progress.",
             ].map((step, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm text-blue-100">
-                <span className="mt-0.5 font-bold text-white">{i + 1}.</span>
+              <li key={i} className="flex gap-2.5 text-[13.5px] text-blue-100">
+                <span className="shrink-0 font-semibold text-white">{i + 1}.</span>
                 {step}
               </li>
             ))}
           </ol>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href={ROUTES.PACKAGES}
-              className="flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-50"
-            >
-              <Monitor className="h-4 w-4" />
-              View Packages
-            </Link>
-            <button className="flex items-center gap-2 rounded-lg border border-white/40 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">
-              <ArrowRight className="h-4 w-4" />
-              Download App
+          <div className="flex flex-wrap gap-2.5">
+            <button className="flex items-center gap-2 rounded-md border border-white px-4 py-2 text-sm font-medium text-white transition hover:bg-white/5">
+              <Monitor className="size-3.5" /> View Packages
+            </button>
+            <button className="text-primary flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition hover:bg-blue-50">
+              <Download className="size-3.5" /> Download App
             </button>
           </div>
         </div>
-      </section>
+
+        {/* CTA */}
+        <div className="rounded-2xl border bg-white px-8 py-12 text-center">
+          <p className="mx-auto mb-6 max-w-2xl text-2xl leading-tight font-normal text-slate-900">
+            Start preparing for your most important academic exams and make your study process more
+            structured and effective.
+          </p>
+          <div className="flex flex-wrap justify-center gap-2.5">
+            <button className="bg-primary hover:bg-primary/90 rounded-md px-5 py-2.5 text-sm font-medium text-white transition">
+              View Packages
+            </button>
+            <button className="rounded-md border border-gray-200 px-5 py-2.5 text-sm font-medium transition hover:bg-gray-50">
+              Download the Testora App
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

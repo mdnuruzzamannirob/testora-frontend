@@ -13,7 +13,10 @@ const PageHero = ({
 }) => {
   return (
     <div
-      className={cn("flex flex-col items-center gap-4 bg-blue-50/60 py-16 text-center", className)}
+      className={cn(
+        "from-primary/10 flex flex-col items-center gap-4 bg-linear-to-b py-16 text-center",
+        className
+      )}
     >
       <h1 className="text-3xl font-bold tracking-tight text-gray-900">{title}</h1>
       <p className="max-w-2xl text-gray-500">{description}</p>
