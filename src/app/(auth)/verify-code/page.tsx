@@ -16,15 +16,15 @@ function VerifyCodeContent() {
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
   const [error, setError] = useState<string | null>(null);
   const [isVerifying, setIsVerifying] = useState(false);
-  const [resendCooldown, setResendCooldown] = useState(0);
+  const [resendCoolDown, setResendCoolDown] = useState(0);
   const [isResending, setIsResending] = useState(false);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
   useEffect(() => {
-    if (resendCooldown <= 0) return;
-    const t = setTimeout(() => setResendCooldown((v) => v - 1), 1000);
+    if (resendCoolDown <= 0) return;
+    const t = setTimeout(() => setResendCoolDown((v) => v - 1), 1000);
     return () => clearTimeout(t);
-  }, [resendCooldown]);
+  }, [resendCoolDown]);
 
   const handleChange = (index: number, value: string) => {
     const digit = value.replace(/\D/, "").slice(-1);
@@ -75,7 +75,7 @@ function VerifyCodeContent() {
     setIsResending(true);
     try {
       await new Promise((r) => setTimeout(r, 600));
-      setResendCooldown(60);
+      setResendCoolDown(60);
       setOtp(Array(OTP_LENGTH).fill(""));
       inputRefs.current[0]?.focus();
     } finally {
@@ -133,10 +133,10 @@ function VerifyCodeContent() {
 
       <button
         onClick={handleResend}
-        disabled={isResending || resendCooldown > 0}
+        disabled={isResending || resendCoolDown > 0}
         className="text-primary mb-4 w-full text-sm font-medium hover:underline disabled:opacity-50"
       >
-        {resendCooldown > 0 ? `Resend Code (${resendCooldown}s)` : "Resend Code"}
+        {resendCoolDown > 0 ? `Resend Code (${resendCoolDown}s)` : "Resend Code"}
       </button>
 
       <p className="mb-4 text-xs text-gray-400">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, Suspense } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Link from "next/link";
@@ -55,15 +55,16 @@ function ResetPasswordContent() {
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
-  const passwordValue = watch("password") ?? "";
+  const passwordValue = useWatch({ control, name: "password", defaultValue: "" });
   const metCount = requirements.filter((r) => r.test(passwordValue)).length;
   const { label: strengthText, color: strengthColor } = strengthInfo(metCount);
 
   const onSubmit = async (_data: FormValues) => {
+    console.log(_data);
     setServerError(null);
     try {
       await new Promise((r) => setTimeout(r, 900));
