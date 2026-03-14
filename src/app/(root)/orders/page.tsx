@@ -101,119 +101,114 @@ export default function OrdersPage() {
   });
 
   return (
-    <section className="flex-1">
-      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
-        <h1 className="mb-1 text-2xl font-extrabold text-gray-900">My Orders</h1>
-        <p className="mb-8 text-sm text-gray-500">
-          Track your marketplace purchases and order status
-        </p>
+    <section className="app-container w-full flex-1 py-10">
+      <h1 className="mb-1 text-2xl font-extrabold text-gray-900">My Orders</h1>
+      <p className="mb-8 text-sm text-gray-500">
+        Track your marketplace purchases and order status
+      </p>
 
-        {/* Filters */}
-        <div className="mb-6 flex flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 shadow-sm sm:flex-row sm:flex-wrap">
-          <div className="relative">
-            <Search className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Enter Order ID..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full rounded-lg border border-gray-200 py-2 pr-3 pl-8 text-xs focus:border-blue-500 focus:outline-none sm:w-44"
-            />
+      {/* Filters */}
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <div className="relative">
+          <Search className="absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Enter Order ID..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="focus:border-primary w-full rounded-lg border border-gray-200 py-2 pr-3 pl-8 text-xs focus:outline-none sm:w-44"
+          />
+        </div>
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="focus:border-primary w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:outline-none sm:w-auto"
+        >
+          {["All Statuses", "New", "Processing", "Shipped", "Delivered"].map((s) => (
+            <option key={s}>{s}</option>
+          ))}
+        </select>
+        <select
+          value={paymentFilter}
+          onChange={(e) => setPaymentFilter(e.target.value)}
+          className="focus:border-primary w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:outline-none sm:w-auto"
+        >
+          {["All Payment Statuses", "Paid", "COD Pending"].map((s) => (
+            <option key={s}>{s}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Orders list */}
+      <div className="space-y-4">
+        {filtered.length === 0 ? (
+          <div className="rounded-xl bg-white py-16 text-center text-sm text-gray-400">
+            No orders found.
           </div>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-blue-500 focus:outline-none sm:w-auto"
-          >
-            {["All Statuses", "New", "Processing", "Shipped", "Delivered"].map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
-          <select
-            value={paymentFilter}
-            onChange={(e) => setPaymentFilter(e.target.value)}
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-xs focus:border-blue-500 focus:outline-none sm:w-auto"
-          >
-            {["All Payment Statuses", "Paid", "COD Pending"].map((s) => (
-              <option key={s}>{s}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* Orders list */}
-        <div className="space-y-4">
-          {filtered.length === 0 ? (
-            <div className="rounded-xl bg-white py-16 text-center text-sm text-gray-400 shadow-sm">
-              No orders found.
-            </div>
-          ) : (
-            filtered.map((order) => (
-              <div
-                key={order.id}
-                className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm"
-              >
-                <div className="mb-3 flex flex-wrap items-center gap-2">
-                  <span className="text-sm font-bold text-gray-900">Order {order.id}</span>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${STATUS_STYLE[order.status]}`}
-                  >
-                    {order.status}
-                  </span>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${PAYMENT_STYLE[order.paymentStatus]}`}
-                  >
-                    {order.paymentStatus}
-                  </span>
-                </div>
-                <div className="mb-3 flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
-                    <ShoppingBag className="h-6 w-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-gray-900">
-                      {order.items[0].name}
-                      {order.items.length > 1 && (
-                        <span className="ml-1 text-xs text-gray-400">
-                          +{order.items.length - 1} more item{order.items.length > 2 ? "s" : ""}
-                        </span>
-                      )}
-                    </p>
-                    <p className="text-xs text-gray-400">Ordered on {order.date}</p>
-                  </div>
-                  <button
-                    onClick={() => setSelectedOrder(order)}
-                    className="ml-auto flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
-                  >
-                    <Eye className="h-3.5 w-3.5" />
-                    View Details
-                  </button>
-                </div>
-                <div className="flex flex-wrap gap-4 text-xs text-gray-500">
-                  <span className="flex items-center gap-1">
-                    <span className="text-gray-400">$</span>
-                    {order.total.toFixed(2)}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <CreditCard className="h-3.5 w-3.5 text-gray-400" />
-                    {order.payment}
-                  </span>
-                  {order.courier && (
-                    <span className="flex items-center gap-1">
-                      <Truck className="h-3.5 w-3.5 text-gray-400" />
-                      {order.courier}
-                    </span>
-                  )}
-                </div>
+        ) : (
+          filtered.map((order) => (
+            <div key={order.id} className="rounded-xl border border-gray-200 bg-white p-5">
+              <div className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="text-sm font-bold text-gray-900">Order {order.id}</span>
+                <span
+                  className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${STATUS_STYLE[order.status]}`}
+                >
+                  {order.status}
+                </span>
+                <span
+                  className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${PAYMENT_STYLE[order.paymentStatus]}`}
+                >
+                  {order.paymentStatus}
+                </span>
               </div>
-            ))
-          )}
-        </div>
+              <div className="mb-3 flex items-center gap-4">
+                <div className="bg-primary/5 flex h-12 w-12 items-center justify-center rounded-xl">
+                  <ShoppingBag className="h-6 w-6 text-blue-400" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">
+                    {order.items[0].name}
+                    {order.items.length > 1 && (
+                      <span className="ml-1 text-xs text-gray-400">
+                        +{order.items.length - 1} more item{order.items.length > 2 ? "s" : ""}
+                      </span>
+                    )}
+                  </p>
+                  <p className="text-xs text-gray-400">Ordered on {order.date}</p>
+                </div>
+                <button
+                  onClick={() => setSelectedOrder(order)}
+                  className="ml-auto flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  <Eye className="h-3.5 w-3.5" />
+                  View Details
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-4 text-xs text-gray-500">
+                <span className="flex items-center gap-1">
+                  <span className="text-gray-400">$</span>
+                  {order.total.toFixed(2)}
+                </span>
+                <span className="flex items-center gap-1">
+                  <CreditCard className="h-3.5 w-3.5 text-gray-400" />
+                  {order.payment}
+                </span>
+                {order.courier && (
+                  <span className="flex items-center gap-1">
+                    <Truck className="h-3.5 w-3.5 text-gray-400" />
+                    {order.courier}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Order Detail Modal */}
       {selectedOrder && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 backdrop-blur-sm">
-          <div className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white shadow-2xl">
+          <div className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
             <div className="flex items-center justify-between p-5 pb-0">
               <h2 className="text-base font-bold text-gray-900">Order Details</h2>
               <button
@@ -225,7 +220,7 @@ export default function OrdersPage() {
             </div>
             <div className="p-5">
               {/* Header */}
-              <div className="mb-4 flex flex-wrap gap-3 border-b border-gray-100 pb-4">
+              <div className="mb-4 flex flex-wrap gap-3 border-b border-gray-200 pb-4">
                 <div>
                   <p className="text-xs text-gray-400">Order ID</p>
                   <p className="text-sm font-bold text-gray-900">{selectedOrder.id}</p>
@@ -236,12 +231,12 @@ export default function OrdersPage() {
                 </div>
                 <div className="ml-auto flex gap-2">
                   <span
-                    className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${STATUS_STYLE[selectedOrder.status]}`}
+                    className={`flex items-center justify-center rounded-full px-2.5 text-[10px] font-semibold ${STATUS_STYLE[selectedOrder.status]}`}
                   >
                     {selectedOrder.status}
                   </span>
                   <span
-                    className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold ${PAYMENT_STYLE[selectedOrder.paymentStatus]}`}
+                    className={`flex items-center justify-center rounded-full px-2.5 text-[10px] font-semibold ${PAYMENT_STYLE[selectedOrder.paymentStatus]}`}
                   >
                     {selectedOrder.paymentStatus}
                   </span>
@@ -253,7 +248,7 @@ export default function OrdersPage() {
               <div className="mb-4 space-y-3">
                 {selectedOrder.items.map((item) => (
                   <div key={item.name} className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-50">
+                    <div className="bg-primary/5 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
                       <ShoppingBag className="h-6 w-6 text-blue-300" />
                     </div>
                     <div className="flex-1">
@@ -268,7 +263,7 @@ export default function OrdersPage() {
               </div>
 
               {/* Order Summary */}
-              <div className="mb-4 border-t border-gray-100 pt-4">
+              <div className="mb-4 border-t border-gray-200 pt-4">
                 <h3 className="mb-3 text-sm font-bold text-gray-900">Order Summary</h3>
                 <div className="space-y-1.5 text-sm">
                   <div className="flex justify-between text-gray-500">
@@ -279,7 +274,7 @@ export default function OrdersPage() {
                     <span>Shipping Cost</span>
                     <span>$5.99</span>
                   </div>
-                  <div className="flex justify-between border-t border-gray-100 pt-2 font-bold text-gray-900">
+                  <div className="flex justify-between border-t border-gray-200 pt-2 font-bold text-gray-900">
                     <span>Total</span>
                     <span>${selectedOrder.total.toFixed(2)}</span>
                   </div>
@@ -287,10 +282,10 @@ export default function OrdersPage() {
               </div>
 
               {/* Payment + Address */}
-              <div className="mb-4 grid grid-cols-2 gap-4 border-t border-gray-100 pt-4">
+              <div className="mb-4 grid grid-cols-2 gap-4 border-t border-gray-200 pt-4">
                 <div>
                   <div className="mb-2 flex items-center gap-1.5">
-                    <CreditCard className="h-4 w-4 text-blue-500" />
+                    <CreditCard className="text-primary h-4 w-4" />
                     <span className="text-xs font-bold text-gray-900">Payment Information</span>
                   </div>
                   <p className="text-xs text-gray-500">Payment Method</p>
@@ -304,7 +299,7 @@ export default function OrdersPage() {
                 </div>
                 <div>
                   <div className="mb-2 flex items-center gap-1.5">
-                    <MapPin className="h-4 w-4 text-blue-500" />
+                    <MapPin className="text-primary h-4 w-4" />
                     <span className="text-xs font-bold text-gray-900">Shipping Address</span>
                   </div>
                   <p className="text-xs text-gray-700">{selectedOrder.address}</p>
@@ -317,9 +312,9 @@ export default function OrdersPage() {
 
               {/* Tracking */}
               {selectedOrder.courier && (
-                <div className="mb-4 rounded-xl bg-blue-50 p-3">
+                <div className="bg-primary/5 mb-4 rounded-xl p-3">
                   <div className="mb-2 flex items-center gap-1.5">
-                    <Truck className="h-4 w-4 text-blue-500" />
+                    <Truck className="text-primary h-4 w-4" />
                     <span className="text-xs font-bold text-blue-900">Tracking Information</span>
                   </div>
                   <div className="flex justify-between text-xs">
@@ -337,7 +332,7 @@ export default function OrdersPage() {
 
               {/* Actions */}
               <div className="flex gap-2">
-                <button className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-blue-600 py-2.5 text-xs font-semibold text-white hover:bg-blue-700">
+                <button className="bg-primary hover:bg-primary/90 flex flex-1 items-center justify-center gap-1.5 rounded-lg py-2.5 text-xs font-semibold text-white">
                   <Truck className="h-3.5 w-3.5" />
                   Track Order
                 </button>
