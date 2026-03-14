@@ -28,7 +28,7 @@ const CARD_GRADIENTS = [
   "from-teal-100 to-cyan-200",
   "from-purple-100 to-violet-200",
   "from-rose-100 to-pink-200",
-  "from-gray-100 to-slate-200",
+  "from-gray-200 to-slate-200",
 ];
 
 export default function BlogPage() {
@@ -66,7 +66,7 @@ export default function BlogPage() {
               className={`rounded-lg px-4 py-1.5 text-sm font-medium transition ${
                 activeCategory === c
                   ? "bg-primary text-white"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
               }`}
             >
               {c}
@@ -78,13 +78,13 @@ export default function BlogPage() {
         {activeCategory === "All Articles" && (
           <Link
             href={`${ROUTES.BLOG}/${featured.slug}`}
-            className="mb-8 flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-xs md:flex-row"
+            className="mb-8 flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xs md:flex-row"
           >
             <div className="from-primary/10 to-primary2/10 flex h-48 w-full items-center justify-center bg-linear-to-br md:h-auto md:w-80 md:shrink-0">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-500/20">
-                <CalendarDays className="h-8 w-8 text-blue-600" />
+              <div className="bg-primary/10 flex h-16 w-16 items-center justify-center rounded-full">
+                <CalendarDays className="text-primary h-8 w-8" />
               </div>
-              <div className="ml-3 text-sm font-medium text-blue-600">Featured Article</div>
+              <div className="text-primary ml-3 text-sm font-medium">Featured Article</div>
             </div>
             <div className="flex flex-col justify-center p-6">
               <span
@@ -106,7 +106,7 @@ export default function BlogPage() {
                     {featured.readTime}
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:underline">
+                <span className="text-primary inline-flex items-center gap-1 text-sm font-semibold hover:underline">
                   Read Article
                   <ChevronRight className="h-4 w-4" />
                 </span>
@@ -121,7 +121,7 @@ export default function BlogPage() {
             <Link
               key={post.slug}
               href={`${ROUTES.BLOG}/${post.slug}`}
-              className="flex flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+              className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white"
             >
               <div
                 className={`flex h-40 items-center justify-center bg-linear-to-br ${CARD_GRADIENTS[i % CARD_GRADIENTS.length]}`}
@@ -130,7 +130,7 @@ export default function BlogPage() {
               </div>
               <div className="flex flex-1 flex-col p-4">
                 <span
-                  className={`mb-2 inline-block w-fit rounded-full px-2 py-0.5 text-[10px] font-semibold ${CATEGORY_COLORS[post.category] ?? "bg-gray-100 text-gray-600"}`}
+                  className={`mb-2 inline-block w-fit rounded-full px-2 py-0.5 text-[10px] font-semibold ${CATEGORY_COLORS[post.category] ?? "bg-gray-200 text-gray-600"}`}
                 >
                   {post.category}
                 </span>
@@ -143,7 +143,7 @@ export default function BlogPage() {
                     <CalendarDays className="h-3 w-3" />
                     {post.date}
                   </span>
-                  <span className="flex items-center gap-1 text-xs font-medium text-blue-600 hover:underline">
+                  <span className="text-primary flex items-center gap-1 text-xs font-medium hover:underline">
                     Read More <ChevronRight className="h-3 w-3" />
                   </span>
                 </div>

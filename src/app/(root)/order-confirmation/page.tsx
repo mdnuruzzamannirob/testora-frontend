@@ -18,7 +18,13 @@ function OrderConfirmedContent() {
   const subtotal = params.get("subtotal") ?? "0.00";
   const shipping = params.get("shipping") ?? "0.00";
 
-  const orderId = `ORD-2026-${String(Math.floor(Math.random() * 99999)).padStart(5, "0")}`;
+  // deterministic order id derived from order params to avoid impure random calls
+  const seed = `${name}|${phone}|${total}|${subtotal}|${shipping}`;
+  let hash = 0;
+  for (let i = 0; i < seed.length; i++) {
+    hash = (hash * 31 + seed.charCodeAt(i)) % 100000;
+  }
+  const orderId = `ORD-2026-${String(hash).padStart(5, "0")}`;
   const date = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -28,9 +34,9 @@ function OrderConfirmedContent() {
   return (
     <div className="mx-auto max-w-2xl space-y-5 px-4 py-8 sm:px-6 sm:py-12">
       {/* Confirmed banner */}
-      <div className="rounded-xl border border-blue-100 bg-white p-8 text-center shadow-sm">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-2 border-blue-500 bg-blue-50">
-          <CheckCircle className="h-7 w-7 text-blue-600" />
+      <div className="rounded-xl border border-gray-200 bg-white p-8 text-center">
+        <div className="border-primary bg-primary/5 mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border-2">
+          <CheckCircle className="text-primary h-7 w-7" />
         </div>
         <h1 className="mb-1 text-xl font-extrabold text-gray-900">Order Confirmed</h1>
         <p className="text-sm text-gray-500">Your order has been successfully placed.</p>
@@ -42,9 +48,9 @@ function OrderConfirmedContent() {
       {/* Info grid */}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {/* Order information */}
-        <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-gray-200 bg-white p-5">
           <div className="mb-3 flex items-center gap-2">
-            <Package className="h-4 w-4 text-blue-500" />
+            <Package className="text-primary h-4 w-4" />
             <h2 className="font-bold text-gray-900">Order Information</h2>
           </div>
           <div className="space-y-2 text-sm">
@@ -64,9 +70,9 @@ function OrderConfirmedContent() {
         </div>
 
         {/* Payment summary */}
-        <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
+        <div className="rounded-xl border border-gray-200 bg-white p-5">
           <div className="mb-3 flex items-center gap-2">
-            <CreditCard className="h-4 w-4 text-blue-500" />
+            <CreditCard className="text-primary h-4 w-4" />
             <h2 className="font-bold text-gray-900">Payment Summary</h2>
           </div>
           <div className="space-y-2 text-sm">
@@ -80,18 +86,18 @@ function OrderConfirmedContent() {
                 {parseFloat(shipping) === 0 ? "Free" : `$${shipping}`}
               </span>
             </div>
-            <div className="flex justify-between border-t border-gray-100 pt-2 font-bold">
+            <div className="flex justify-between border-t border-gray-200 pt-2 font-bold">
               <span>Total</span>
-              <span className="text-blue-600">${total}</span>
+              <span className="text-primary">${total}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Delivery information */}
-      <div className="rounded-xl border border-gray-100 bg-white p-5 shadow-sm">
+      <div className="rounded-xl border border-gray-200 bg-white p-5">
         <div className="mb-3 flex items-center gap-2">
-          <MapPin className="h-4 w-4 text-blue-500" />
+          <MapPin className="text-primary h-4 w-4" />
           <h2 className="font-bold text-gray-900">Delivery Information</h2>
         </div>
         <div className="grid grid-cols-2 gap-4 text-sm">
@@ -121,8 +127,8 @@ function OrderConfirmedContent() {
       </div>
 
       {/* Notice */}
-      <div className="rounded-xl bg-blue-50 px-5 py-4 text-center">
-        <p className="text-xs text-blue-700">
+      <div className="bg-primary/5 rounded-xl px-5 py-4 text-center">
+        <p className="text-primary text-xs">
           We will process your order shortly and notify you when shipping updates become available.
         </p>
       </div>
@@ -131,7 +137,7 @@ function OrderConfirmedContent() {
       <div className="flex flex-wrap justify-center gap-3">
         <Link
           href={ROUTES.HOME}
-          className="flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
+          className="bg-primary hover:bg-primary/90 flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold text-white"
         >
           <Home className="h-4 w-4" />
           Go to Home

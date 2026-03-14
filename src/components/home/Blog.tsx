@@ -41,7 +41,7 @@ function Blog() {
           {posts.map((p) => (
             <div
               key={p.title}
-              className="flex flex-col overflow-hidden rounded-xl border-gray-100 bg-white shadow-sm"
+              className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white"
             >
               <div className={`h-48 bg-linear-to-br ${p.color}`} />
               <div className="flex flex-1 flex-col p-5">
