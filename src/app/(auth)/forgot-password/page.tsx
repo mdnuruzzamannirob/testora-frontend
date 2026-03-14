@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Mail, AlertCircle, ArrowLeft } from "lucide-react";
+import { Mail, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants";
 
@@ -62,7 +62,7 @@ export default function ForgotPasswordPage() {
               placeholder="your@email.com"
               className={cn(
                 "w-full rounded-lg border py-2.5 pr-3.5 pl-10 text-sm placeholder-gray-400 transition outline-none",
-                "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+                "focus:border-primary focus:ring-primary/20 focus:ring-2",
                 errors.email
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
                   : "border-gray-200 bg-white"
@@ -80,7 +80,7 @@ export default function ForgotPasswordPage() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:opacity-60"
+          className="bg-primary hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition disabled:opacity-60"
         >
           {isSubmitting && (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
@@ -90,17 +90,10 @@ export default function ForgotPasswordPage() {
       </form>
 
       <div className="mt-5 flex flex-col items-center gap-3 text-sm">
-        <Link
-          href={ROUTES.LOGIN}
-          className="flex items-center gap-1.5 text-gray-500 hover:text-gray-700"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          Back to Login
-        </Link>
         <p className="text-gray-400">
           Remember your password?{" "}
-          <Link href={ROUTES.LOGIN} className="font-medium text-blue-600 hover:underline">
-            Log In
+          <Link href={ROUTES.LOGIN} className="text-primary font-medium hover:underline">
+            Login
           </Link>
         </p>
       </div>

@@ -93,7 +93,7 @@ function ResetPasswordContent() {
         )}
         <Link
           href={ROUTES.LOGIN}
-          className="block w-full rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+          className="bg-primary hover:bg-primary/90 block w-full rounded-lg py-2.5 text-sm font-semibold text-white transition"
         >
           Back to Login
         </Link>
@@ -109,7 +109,7 @@ function ResetPasswordContent() {
       {/* Icon */}
       <div className="mb-5 flex justify-center">
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-100">
-          <Lock className="h-7 w-7 text-blue-600" />
+          <Lock className="text-primary h-7 w-7" />
         </div>
       </div>
 
@@ -137,7 +137,7 @@ function ResetPasswordContent() {
               placeholder="Enter new password"
               className={cn(
                 "w-full rounded-lg border py-2.5 pr-10 pl-10 text-sm placeholder-gray-400 transition outline-none",
-                "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+                "focus:border-primary focus:ring-primary/20 focus:ring-2",
                 errors.password
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
                   : "border-gray-200 bg-white"
@@ -206,7 +206,7 @@ function ResetPasswordContent() {
               placeholder="Confirm new password"
               className={cn(
                 "w-full rounded-lg border py-2.5 pr-10 pl-10 text-sm placeholder-gray-400 transition outline-none",
-                "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+                "focus:border-primary focus:ring-primary/20 focus:ring-2",
                 errors.confirmPassword
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
                   : "border-gray-200 bg-white"
@@ -232,7 +232,7 @@ function ResetPasswordContent() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:opacity-60"
+          className="bg-primary hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition disabled:opacity-60"
         >
           {isSubmitting && (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />

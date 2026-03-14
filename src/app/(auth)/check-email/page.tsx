@@ -19,8 +19,8 @@ function CheckEmailContent() {
     <div className="w-full max-w-100 text-center">
       {/* Icon */}
       <div className="mb-5 flex justify-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100">
-          <Mail className="h-8 w-8 text-blue-600" />
+        <div className="bg-primary/5 flex h-16 w-16 items-center justify-center rounded-2xl">
+          <Mail className="text-primary h-8 w-8" />
         </div>
       </div>
 
@@ -37,7 +37,7 @@ function CheckEmailContent() {
       {/* Send OTP button */}
       <button
         onClick={() => router.push(`${ROUTES.VERIFY_CODE}?email=${encodeURIComponent(email)}`)}
-        className="mb-3 w-full rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
+        className="bg-primary hover:bg-primary/90 mb-3 w-full rounded-lg py-2.5 text-sm font-semibold text-white transition"
       >
         Send OTP
       </button>

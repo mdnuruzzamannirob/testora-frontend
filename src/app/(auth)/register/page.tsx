@@ -89,7 +89,7 @@ export default function RegisterPage() {
               placeholder="Enter your full name"
               className={cn(
                 "w-full rounded-lg border py-2.5 pr-3.5 pl-10 text-sm text-gray-900 placeholder-gray-400 transition outline-none",
-                "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+                "focus:border-primary focus:ring-primary/20 focus:ring-2",
                 errors.fullName
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
                   : "border-gray-200 bg-white"
@@ -116,7 +116,7 @@ export default function RegisterPage() {
               placeholder="Enter your email"
               className={cn(
                 "w-full rounded-lg border py-2.5 pr-3.5 pl-10 text-sm text-gray-900 placeholder-gray-400 transition outline-none",
-                "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+                "focus:border-primary focus:ring-primary/20 focus:ring-2",
                 errors.email
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
                   : "border-gray-200 bg-white"
@@ -143,7 +143,7 @@ export default function RegisterPage() {
               placeholder="Create a password"
               className={cn(
                 "w-full rounded-lg border py-2.5 pr-10 pl-10 text-sm text-gray-900 placeholder-gray-400 transition outline-none",
-                "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+                "focus:border-primary focus:ring-primary/20 focus:ring-2",
                 errors.password
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
                   : "border-gray-200 bg-white"
@@ -178,7 +178,7 @@ export default function RegisterPage() {
               placeholder="Confirm your password"
               className={cn(
                 "w-full rounded-lg border py-2.5 pr-10 pl-10 text-sm text-gray-900 placeholder-gray-400 transition outline-none",
-                "focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20",
+                "focus:border-primary focus:ring-primary/20 focus:ring-2",
                 errors.confirmPassword
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
                   : "border-gray-200 bg-white"
@@ -203,11 +203,11 @@ export default function RegisterPage() {
 
         <p className="text-xs text-gray-400">
           I agree to the{" "}
-          <Link href="#" className="text-blue-600 hover:underline">
+          <Link href="#" className="text-primary hover:underline">
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href="#" className="text-blue-600 hover:underline">
+          <Link href="#" className="text-primary hover:underline">
             Privacy Policy
           </Link>
         </p>
@@ -215,7 +215,7 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+          className="bg-primary hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting && (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
@@ -262,7 +262,7 @@ export default function RegisterPage() {
 
       <p className="mt-6 text-center text-sm text-gray-500">
         Already have an account?{" "}
-        <Link href={ROUTES.LOGIN} className="font-medium text-blue-600 hover:underline">
+        <Link href={ROUTES.LOGIN} className="text-primary font-medium hover:underline">
           Login
         </Link>
       </p>

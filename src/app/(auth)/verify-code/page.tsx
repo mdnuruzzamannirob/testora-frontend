@@ -84,11 +84,11 @@ function VerifyCodeContent() {
   };
 
   return (
-    <div className="w-full max-w-[400px] text-center">
+    <div className="w-full max-w-100 text-center">
       {/* Icon */}
       <div className="mb-5 flex justify-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100">
-          <ShieldCheck className="h-8 w-8 text-blue-600" />
+        <div className="bg-primary/5 flex h-16 w-16 items-center justify-center rounded-2xl">
+          <ShieldCheck className="text-primary h-8 w-8" />
         </div>
       </div>
 
@@ -111,7 +111,7 @@ function VerifyCodeContent() {
             value={digit}
             onChange={(e) => handleChange(i, e.target.value)}
             onKeyDown={(e) => handleKeyDown(i, e)}
-            className={`h-12 w-11 rounded-lg border text-center text-lg font-semibold text-gray-900 transition outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 ${
+            className={`focus:border-primary focus:ring-primary/20 h-12 w-11 rounded-lg border text-center text-lg font-semibold text-gray-900 transition outline-none focus:ring-2 ${
               error ? "border-red-400 bg-red-50" : "border-gray-200 bg-white"
             }`}
           />
@@ -123,7 +123,7 @@ function VerifyCodeContent() {
       <button
         onClick={handleVerify}
         disabled={isVerifying}
-        className="mb-3 flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:opacity-60"
+        className="bg-primary hover:bg-primary/90 mb-3 flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition disabled:opacity-60"
       >
         {isVerifying && (
           <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
@@ -134,7 +134,7 @@ function VerifyCodeContent() {
       <button
         onClick={handleResend}
         disabled={isResending || resendCooldown > 0}
-        className="mb-4 w-full text-sm font-medium text-blue-600 hover:underline disabled:opacity-50"
+        className="text-primary mb-4 w-full text-sm font-medium hover:underline disabled:opacity-50"
       >
         {resendCooldown > 0 ? `Resend Code (${resendCooldown}s)` : "Resend Code"}
       </button>
