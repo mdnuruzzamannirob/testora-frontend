@@ -1,12 +1,12 @@
 ﻿"use client";
 
-import { useState } from "react";
-import Link from "next/link";
-import { ArrowLeft, CreditCard, Truck, ShieldCheck } from "lucide-react";
 import { ROUTES } from "@/constants";
-import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { clearCart } from "@/store/slices/cartSlice";
+import { ArrowLeft, CreditCard, ShieldCheck, Truck } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type PaymentMethod = "card" | "cod";
 
@@ -287,11 +287,11 @@ export default function CheckoutPage() {
               />
               <span className="text-xs text-gray-600">
                 I agree to the{" "}
-                <Link href="#" className="text-primary hover:underline">
+                <Link href={ROUTES.TERMS_OF_SERVICE} className="text-primary hover:underline">
                   Terms of Service
                 </Link>{" "}
                 and{" "}
-                <Link href="#" className="text-primary hover:underline">
+                <Link href={ROUTES.PRIVACY_POLICY} className="text-primary hover:underline">
                   Privacy Policy
                 </Link>
               </span>

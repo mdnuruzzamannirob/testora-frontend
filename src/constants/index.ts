@@ -2,6 +2,7 @@ export const APP_NAME = "Testora";
 
 export const ROUTES = {
   HOME: "/",
+  CONTACT: "/contact",
   LOGIN: "/login",
   REGISTER: "/register",
   FORGOT_PASSWORD: "/forgot-password",
@@ -19,6 +20,8 @@ export const ROUTES = {
   ORDERS: "/orders",
   MY_PACKAGES: "/my-packages",
   BLOG: "/blog",
+  PRIVACY_POLICY: "/privacy-policy",
+  TERMS_OF_SERVICE: "/terms-of-service",
 } as const;
 
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api";

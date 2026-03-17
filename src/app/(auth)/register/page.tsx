@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Eye, EyeOff, AlertCircle, User, Mail, Lock } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants";
+import { cn } from "@/lib/utils";
 import { useAppDispatch } from "@/store/hooks";
 import { setCredentials } from "@/store/slices/authSlice";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AlertCircle, Eye, EyeOff, Lock, Mail, User } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const schema = z
   .object({
@@ -203,11 +203,11 @@ export default function RegisterPage() {
 
         <p className="text-xs text-gray-400">
           I agree to the{" "}
-          <Link href="#" className="text-primary hover:underline">
+          <Link href={ROUTES.TERMS_OF_SERVICE} className="text-primary hover:underline">
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href="#" className="text-primary hover:underline">
+          <Link href={ROUTES.PRIVACY_POLICY} className="text-primary hover:underline">
             Privacy Policy
           </Link>
         </p>
