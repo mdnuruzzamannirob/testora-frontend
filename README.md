@@ -1,409 +1,369 @@
 # Testora Frontend
 
-A modern, feature-rich platform for exam preparation and online learning. Built with Next.js 16, React 19, and TypeScript, Testora provides users with tools to learn, purchase exams/courses, manage their profile, and engage with educational content through a seamless marketplace experience.
+A modern, feature-rich learning platform built with **Next.js 16**, **React 19**, and **TypeScript**. Testora Frontend provides users with a comprehensive experience for exam preparation, course discovery, marketplace browsing, and educational content consumption through an intuitive and responsive interface.
 
-## Overview
+## 🎯 Project Overview
 
-Testora Frontend is a comprehensive learning platform that combines exam preparation, course marketplace, and educational resources. It offers users an intuitive interface to discover and purchase learning products, track their progress, and access quality educational content through an integrated blog and marketplace.
+Testora Frontend is a consumer-facing web application that serves as the primary interface for the Testora learning ecosystem. It enables users to:
 
-## Key Features
+- Register and manage their educational accounts
+- Browse and purchase courses, exam packages, and learning materials
+- Prepare for exams with interactive question-based assessments
+- Track their learning progress and performance
+- Access educational content through an integrated blog
+- Manage orders and subscriptions
+- Personalize their learning experience through user settings
 
-### User Authentication & Account Management
+## ✨ Key Features
+
+### 🔐 Authentication & Account Management
 
 - User registration with email verification
-- Secure login system
+- Secure login and session management
 - Password recovery with OTP verification
-- User profile management
-- Account settings and preferences
+- Comprehensive user profile management
+- Account settings and preference customization
+- Role-based access control
 
-### Exam & Learning System
+### 📚 Exam & Learning System
 
-- Question-based exam preparation
-- Interactive exam interface
-- Progress tracking
-- Performance analytics
+- Interactive question-based exam interface
+- Progress tracking and performance analytics
+- Real-time answer validation
+- Comprehensive learning paths
+- Performance metrics and analytics
 
-### Educational Content
+### 📖 Educational Content
 
-- Comprehensive blog platform
-- Learning articles and resources
-- Content categorization
+- Full-featured blog platform with articles and resources
+- Content categorization and tagging
+- Advanced search and filtering capabilities
 - Reading progress tracking
+- Content recommendations
 
-### Marketplace & E-Commerce
+### 🛍️ Marketplace & E-Commerce
 
-- Browse available courses and packages
-- Detailed product information
-- Product categories and filtering
-- Shopping cart functionality
+- Browse and filter courses, exam packages, and learning products
+- Detailed product information with descriptions and reviews
+- Product categorization and advanced search
+- Shopping cart with real-time updates
 - Secure checkout process
+- Multiple payment method support
 - Order confirmation and tracking
-- Order history and management
+- Comprehensive order history and management
 
-### Subscription Management
+### 💳 Subscription & Premium Features
 
-- Multiple package options
-- Premium membership features
-- Subscription tracking
-- Package management dashboard
+- Multiple premium package options
+- Premium membership management
+- Subscription tracking and renewal
+- Upgrade/downgrade options
+- Exclusive premium content access
 
-### Home Page
+### 🏠 Home & Discovery
 
-- Feature showcase
-- Platform statistics
-- How-it-works tutorial
-- Package comparison
-- Call-to-action sections
-- Testimonials and success stories
+- Personalized user dashboard
+- Featured courses and products
+- Trending content recommendations
+- Quick access to recent activities
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Core Framework
 
-- **Next.js 16.1.6** - React framework with SSR/SSG capabilities
-- **React 19.2.3** - UI library with latest features
-- **TypeScript 5** - Static type checking and better DX
+- **Next.js 16.1.6** - React framework for production
+- **React 19.2.3** - UI library
+- **React DOM 19.2.3** - DOM rendering
+- **TypeScript 5** - Static type checking
 
 ### State Management & Forms
 
-- **Redux Toolkit 2.11.2** - Predictable state container
-- **React-Redux 9.2.0** - Official React bindings for Redux
-- **React Hook Form 7.71.2** - Performant form management
-- **Zod 4.3.6** - TypeScript-first schema validation
+- **@reduxjs/toolkit 2.11.2** - Redux state management
+- **react-redux 9.2.0** - React-Redux bindings
+- **react-hook-form 7.71.2** - Performant, flexible form validation
+- **@hookform/resolvers 5.2.2** - Schema validation resolvers
+- **zod 4.3.6** - TypeScript-first schema validation
 
-### UI & Components
+### UI & Styling
 
-- **TailwindCSS 4** - Utility-first CSS framework
-- **shadcn/ui** - High-quality React components
-- **Base UI React 1.2.0** - Accessible, unstyled base components
-- **Lucide React 0.577.0** - Beautiful icon library
-- **Class Variance Authority 0.7.1** - Type-safe component variants
-- **Tailwind Merge 3.5.0** - Intelligent TailwindCSS class composition
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **@tailwindcss/postcss 4** - PostCSS plugin for Tailwind
+- **class-variance-authority 0.7.1** - CSS class composition utility
+- **tailwind-merge 3.5.0** - Combines Tailwind classes
+- **tw-animate-css 1.4.0** - Animation utilities
+- **lucide-react 0.577.0** - Beautiful, consistent icons
+- **shadcn 4.0.5** - High-quality React components
+- **clsx 2.1.1** - Conditional classname concatenation
+- **@base-ui/react 1.2.0** - Customizable React components
 
-### Developer Experience
+### Development Tools
 
-- **ESLint 9** - Code quality and consistency
-- **Prettier 3.8.1** - Automatic code formatting
-- **TypeScript** - Type safety throughout the application
+- **ESLint 9** - Code quality and style linting
+- **Prettier 3.8.1** - Code formatter
+- **PostCSS 4** - CSS transformations
 
-## Project Structure
+## 📁 Project Structure
 
 ```
-src/
-├── app/                           # Next.js app directory
-│   ├── (auth)/                   # Authentication route group
-│   │   ├── login/               # User login page
-│   │   ├── register/            # User registration
-│   │   ├── forgot-password/      # Password recovery initiation
-│   │   ├── check-email/          # Email verification status
-│   │   ├── verify-code/          # OTP/code verification
-│   │   └── reset-password/       # Password reset with token
-│   ├── (root)/                   # Public route group
-│   │   ├── page.tsx             # Home page with platform overview
-│   │   ├── about/               # About us page
-│   │   ├── contact/             # Contact form
-│   │   ├── packages/            # Package/pricing page
-│   │   ├── blog/                # Blog listing and articles
-│   │   ├── marketplace/         # Product marketplace browsing
-│   │   ├── cart/                # Shopping cart
-│   │   ├── checkout/            # Checkout process
-│   │   ├── order-confirmation/  # Post-purchase confirmation
-│   │   ├── orders/              # User order history
-│   │   ├── my-packages/         # User subscriptions
-│   │   ├── profile/             # User profile management
-│   │   ├── privacy-policy/      # Privacy policy
-│   │   └── terms-of-service/    # Terms of service
-│   ├── layout.tsx               # Root layout
-│   └── globals.css              # Global styles
-├── components/                    # Reusable React components
-│   ├── common/                   # Shared UI components (nav, footer, etc.)
-│   ├── home/                     # Home page components
-│   │   ├── Banner.tsx           # Hero banner
-│   │   ├── About.tsx            # About section
-│   │   ├── Features.tsx          # Features showcase
-│   │   ├── Packages.tsx          # Pricing/packages section
-│   │   ├── Marketplace.tsx       # Marketplace preview
-│   │   ├── Blog.tsx              # Blog preview section
-│   │   ├── Exam.tsx              # Exam preparation section
-│   │   ├── HowItWorks.tsx        # Platform tutorial
-│   │   ├── AppScreens.tsx        # App interface showcase
-│   │   ├── Stats.tsx             # Platform statistics
-│   │   └── CTA.tsx               # Call-to-action sections
-│   └── ui/                        # Base UI components
-├── constants/                     # Application constants
-│   └── index.ts                  # Routes, API config, pagination defaults
-├── lib/                          # Utility functions and helpers
-│   ├── blog-data.ts             # Blog mock data
-│   ├── utils.ts                 # Common utility functions
-│   └── [other]-data.ts          # Domain-specific mock data
-├── services/                      # API integration layer
-│   └── api.ts                    # Centralized API client
-├── store/                         # Redux store configuration
-│   ├── slices/                   # Redux reducers
-│   │   ├── authSlice.ts         # Authentication state
-│   │   ├── uiSlice.ts           # UI state
-│   │   └── cartSlice.ts         # Shopping cart state
-│   ├── hooks.ts                  # Custom Redux hooks
-│   └── index.ts                  # Store configuration
-└── types/                         # TypeScript type definitions
-    └── index.ts                  # Common types and interfaces
+testora-frontend/
+├── public/                    # Static assets and images
+├── src/
+│   ├── app/                   # Next.js app directory
+│   │   ├── globals.css        # Global styles
+│   │   ├── layout.tsx         # Root layout component
+│   │   ├── page.tsx           # Home page
+│   │   ├── (auth)/            # Authentication routes group
+│   │   │   ├── layout.tsx
+│   │   │   ├── login/         # Login page
+│   │   │   ├── forgot-password/
+│   │   │   ├── reset-password/
+│   │   │   └── verify-otp/
+│   │   └── (root)/            # Main application routes
+│   ├── components/            # Reusable React components
+│   │   ├── common/            # Shared components
+│   │   ├── home/              # Home page components
+│   │   └── ui/                # UI component library
+│   ├── constants/             # Application constants
+│   │   └── index.ts
+│   ├── lib/                   # Utility functions and helpers
+│   │   ├── blog-data.ts
+│   │   ├── utils.ts
+│   │   └── ...
+│   ├── services/              # API integration layer
+│   │   └── api.ts             # API client configuration
+│   ├── store/                 # Redux store configuration
+│   │   ├── index.ts           # Store setup
+│   │   ├── hooks.ts           # Custom Redux hooks
+│   │   ├── ReduxProvider.tsx  # Redux provider component
+│   │   └── slices/            # Redux slices (reducers)
+│   └── types/                 # TypeScript type definitions
+│       └── index.ts
+├── package.json               # Project dependencies
+├── tsconfig.json              # TypeScript configuration
+├── next.config.ts             # Next.js configuration
+├── tailwind.config.ts         # Tailwind CSS configuration
+├── postcss.config.mjs         # PostCSS configuration
+├── eslint.config.mjs          # ESLint configuration
+├── components.json            # Component configuration
+└── README.md                  # Project documentation
 ```
 
-## Installation
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18.17 or later
-- npm, yarn, pnpm, or bun package manager
+- **Node.js** 18.x or higher
+- **npm** 9.x or **yarn** 1.22.x or **pnpm** 8.x
 
-### Setup Instructions
+### Installation
 
 1. **Clone the repository**
 
-```bash
-git clone <repository-url>
-cd testora-frontend
-```
+   ```bash
+   git clone <repository-url>
+   cd testora-frontend
+   ```
 
 2. **Install dependencies**
 
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+
+3. **Environment Configuration**
+   Create a `.env.local` file in the root directory:
+
+   ```env
+   NEXT_PUBLIC_API_BASE_URL=http://localhost:3001
+   # Add other environment variables as needed
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+## 📝 Available Scripts
+
+### Development
+
+- **`npm run dev`** - Start development server with hot reload
+- **`npm run build`** - Build optimized production bundle
+- **`npm start`** - Start production server
+
+### Code Quality
+
+- **`npm run lint`** - Run ESLint to check code quality
+- **`npm run lint:fix`** - Fix ESLint issues automatically
+- **`npm run format`** - Format code with Prettier
+- **`npm run format:check`** - Check if code is formatted correctly
+
+## 🔧 Configuration Files
+
+### TypeScript Configuration (`tsconfig.json`)
+
+- Target: ES2017
+- Strict mode enabled for type safety
+- Path alias: `@/*` maps to `./src/*`
+- JSX: React 19 compatible
+
+### Next.js Configuration (`next.config.ts`)
+
+- Optimized image handling with remote pattern support
+- Support for HTTP and HTTPS images
+
+### Tailwind CSS Configuration
+
+- Utility-first CSS framework
+- Custom theming and extensions
+- PostCSS integration
+
+## 🔌 API Integration
+
+The application integrates with a backend API through the centralized API client located at `src/services/api.ts`.
+
+### Key Endpoints
+
+- Authentication endpoints (login, register, verify OTP)
+- User profile and settings
+- Product/course catalog and search
+- Shopping cart and checkout
+- Orders and subscription management
+- Blog content and articles
+- Questions and exam systems
+
+## 📦 State Management
+
+Redux is used for global state management with `@reduxjs/toolkit`:
+
+- **Slices** in `src/store/slices/` handle different domains
+- **Custom hooks** in `src/store/hooks.ts` provide easy access to state
+- **ReduxProvider** wraps the application for state availability
+
+## 🎨 UI Components
+
+The application uses a combination of component libraries:
+
+- **shadcn/ui** - Pre-built, customizable components
+- **Base UI** - Headless UI components
+- **Lucide React** - Consistent icon set
+- **Custom components** - Domain-specific components in `src/components/`
+
+### Component Organization
+
+```
+components/
+├── common/      # Sidebar, header, navigation
+├── home/        # Home page specific components
+└── ui/          # Reusable UI components
+```
+
+## 🧪 Form Validation
+
+The application uses:
+
+- **react-hook-form** for efficient form management
+- **zod** for schema-based validation
+- **@hookform/resolvers** for schema integration
+
+Form validation is type-safe and performant with minimal re-renders.
+
+## 📱 Responsive Design
+
+- Mobile-first approach using Tailwind CSS
+- Responsive breakpoints for all screen sizes
+- Touch-friendly interface elements
+- Optimized for mobile, tablet, and desktop displays
+
+## 🌐 Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## 🚢 Deployment
+
+### Vercel (Recommended for Next.js)
+
 ```bash
-npm install
-# or
-yarn install
-# or
-pnpm install
-# or
-bun install
+vercel
 ```
 
-3. **Configure environment variables**
-   Create a `.env.local` file in the project root:
+### Docker
 
-```env
-NEXT_PUBLIC_API_URL=http://localhost:5000/api
-```
+Create a `Dockerfile` and Docker Compose configuration for containerized deployment.
 
-## Development
+### Build Steps
 
-### Start Development Server
+1. Install dependencies: `npm install`
+2. Build the application: `npm run build`
+3. Start production server: `npm start`
 
-```bash
-npm run dev
-```
+## 👥 Contributing
 
-The application will be available at [http://localhost:3000](http://localhost:3000). Changes to files will auto-update in the browser.
+1. Create a feature branch: `git checkout -b feature/your-feature`
+2. Make your changes and commit: `git commit -am 'Add feature'`
+3. Push to the branch: `git push origin feature/your-feature`
+4. Submit a pull request
 
-### Build for Production
+### Code Standards
 
-```bash
-npm run build
-npm start
-```
+- Follow ESLint rules
+- Format code with Prettier
+- Write meaningful commit messages
+- Keep components small and focused
+- Use TypeScript for type safety
 
-## Available Scripts
-
-| Command                | Description                                          |
-| ---------------------- | ---------------------------------------------------- |
-| `npm run dev`          | Start development server with hot module replacement |
-| `npm run build`        | Create optimized production build                    |
-| `npm start`            | Run production server                                |
-| `npm run lint`         | Run ESLint to check code quality                     |
-| `npm run lint:fix`     | Run ESLint and fix fixable issues                    |
-| `npm run format`       | Format all code with Prettier                        |
-| `npm run format:check` | Check code formatting without making changes         |
-
-## User Flows
-
-### Authentication Flow
-
-```
-Public Pages → Login/Register → Email Verification
-           → Forgot Password → OTP Verification → Reset Password
-           → Logged In → Marketplace, Profile, Orders
-```
-
-### Shopping Flow
-
-```
-Home → Browse Marketplace → Product Details
-    → Add to Cart → Review Cart → Checkout
-    → Payment → Order Confirmation → Order History
-```
-
-### Learning Flow
-
-```
-Home → Exam Section → Take Exam → View Results
-    → Blog → Read Articles → Track Progress
-```
-
-## State Management
-
-The application uses Redux Toolkit for global state:
-
-### Auth Slice
-
-Manages user authentication state:
-
-- User login/logout
-- User profile data
-- Authentication tokens
-- Session management
-
-### UI Slice
-
-Manages application UI state:
-
-- Modals and dialogs
-- Toast notifications
-- Sidebar/menu state
-- Theme preferences
-
-### Cart Slice
-
-Manages shopping cart:
-
-- Cart items
-- Quantities
-- Total calculations
-- Persistent cart state
-
-## API Integration
-
-The frontend communicates with a backend API:
-
-```
-Base URL: http://localhost:5000/api (default development)
-```
-
-Override via the `NEXT_PUBLIC_API_URL` environment variable.
-
-### API Service
-
-Centralized API client in `src/services/api.ts`:
-
-- Authentication endpoints
-- User management
-- Product/marketplace endpoints
-- Blog endpoints
-- Order processing
-
-## Form Validation
-
-Form validation is implemented using:
-
-- **Zod** - Type-safe schema definition and runtime validation
-- **React Hook Form** - Efficient form state and validation
-- Custom validation hooks for complex business logic
-
-## Security Features
-
-- Environment-based API URL configuration
-- Protected routes via authentication middleware
-- Secure password recovery flow with OTP
-- Email verification for new accounts
-- Session-based user management
-
-## Performance Optimizations
-
-- Next.js automatic code splitting and lazy loading
-- Image optimization through Next.js Image component
-- Font optimization and loading
-- CSS and JavaScript minification in production
-- SEO optimization with metadata and structured data
-
-## Code Quality
-
-### ESLint Rules
-
-- Enforces consistent code style
-- Next.js recommended configurations
-- Prettier integration
-
-### Development Workflow
-
-1. Write features following project structure
-2. Format code: `npm run format`
-3. Check linting: `npm run lint`
-4. Fix issues: `npm run lint:fix`
-
-## Browser Support
-
-Modern browsers with ES2020+ support:
-
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-
-## Troubleshooting
+## 🐛 Troubleshooting
 
 ### Common Issues
 
-**Port 3000 already in use**
+**Issue: `useSearchParams` errors in production build**
 
-```bash
-# Use a different port
-npm run dev -- -p 3001
-```
+- Solution: Wrap components using `useSearchParams` in `Suspense` boundaries when used in server components
 
-**Module not found errors**
+**Issue: Type conflicts with form validation**
 
-```bash
-# Clear cache and reinstall
-rm -rf .next node_modules
-npm install
-```
+- Solution: Use direct `schema.safeParse()` instead of resolver library for better compatibility
 
-**API connection issues**
+**Issue: Build errors with image loading**
 
-- Verify backend API is running
-- Check `NEXT_PUBLIC_API_URL` environment variable
-- Ensure CORS is configured on backend
+- Check `next.config.ts` image configuration
+- Verify remote image domains are whitelisted
 
-### Type Errors
+## 📄 License
 
-- Run `npm run lint` to identify type issues
-- Ensure all imports have TypeScript types
-- Check Redux store type definitions
+This project is proprietary software. All rights reserved.
 
-## Contributing
+## 📞 Support
 
-When contributing to this project:
+For issues, questions, or suggestions:
 
-1. Follow the established folder structure
-2. Use TypeScript for all new components
-3. Keep components reusable and modular
-4. Write proper type definitions
-5. Format code before commit: `npm run format`
-6. Ensure no ESLint warnings: `npm run lint`
+- Create an issue in the repository
+- Contact the development team
+- Check documentation in related projects
 
-## Deployment
+## 🔗 Related Projects
 
-### Vercel (Recommended)
+- **testora-dashboard** - Admin dashboard for managing the platform
+- **testora-backend** - Backend API service
 
-```bash
-# Deploy from Git integration
-# Vercel will automatically build and deploy
-```
+## 📊 Performance Optimization
 
-### Other Platforms
+- Next.js image optimization
+- Code splitting and lazy loading
+- Tailwind CSS purging for smaller bundle size
+- Redux for efficient state updates
+- React 19's improved rendering
 
-The `npm run build` command creates a `.next` directory ready for deployment to:
+---
 
-- Self-hosted servers with Node.js
-- Docker containers
-- Serverless platforms (with adapter configuration)
-
-## Resources
-
-- [Next.js Documentation](https://nextjs.org/docs) - Framework guides and API
-- [React Documentation](https://react.dev) - React concepts and patterns
-- [Redux Toolkit Guide](https://redux-toolkit.js.org) - State management
-- [TailwindCSS Docs](https://tailwindcss.com/docs) - Utility-first CSS
-- [Zod Documentation](https://zod.dev) - Schema validation
-- [React Hook Form](https://react-hook-form.com) - Form state management
-
-## License
-
-This project is part of the Testora platform. All rights reserved.
+**Version:** 0.1.0
+**Last Updated:** April 2026
+**Maintainer:** Development Team
