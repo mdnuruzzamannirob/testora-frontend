@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, Suspense } from "react";
-import { useForm, useWatch } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { Eye, EyeOff, AlertCircle, Lock, CheckCircle2 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants";
+import { cn } from "@/lib/utils";
+import { getErrorMessage, useResetPasswordMutation } from "@/store/apis";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AlertCircle, CheckCircle2, Eye, EyeOff, Lock } from "lucide-react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
+import { useForm, useWatch } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const schema = z
   .object({
@@ -44,6 +46,7 @@ function strengthInfo(count: number): { label: string; color: string } {
 }
 
 function ResetPasswordContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email") ?? "";
 
@@ -51,6 +54,7 @@ function ResetPasswordContent() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [success, setSuccess] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [resetPassword, { isLoading: isResettingPassword }] = useResetPasswordMutation();
 
   const {
     register,
@@ -64,13 +68,27 @@ function ResetPasswordContent() {
   const { label: strengthText, color: strengthColor } = strengthInfo(metCount);
 
   const onSubmit = async (_data: FormValues) => {
-    console.log(_data);
     setServerError(null);
+
+    if (!email) {
+      const message = "Email is missing. Please restart the reset process.";
+      setServerError(message);
+      toast.error(message);
+      return;
+    }
+
     try {
-      await new Promise((r) => setTimeout(r, 900));
+      const response = await resetPassword({
+        email,
+        newPassword: _data.password,
+      }).unwrap();
+
+      toast.success(response.message || "Password has been reset successfully.");
       setSuccess(true);
-    } catch {
-      setServerError("Something went wrong. Please try again.");
+    } catch (error) {
+      const message = getErrorMessage(error, "Unable to reset password. Please try again.");
+      setServerError(message);
+      toast.error(message);
     }
   };
 
@@ -232,15 +250,23 @@ function ResetPasswordContent() {
 
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || isResettingPassword}
           className="bg-primary hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition disabled:opacity-60"
         >
-          {isSubmitting && (
+          {(isSubmitting || isResettingPassword) && (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
           )}
-          {isSubmitting ? "Saving..." : "Save New Password"}
+          {isSubmitting || isResettingPassword ? "Saving..." : "Save New Password"}
         </button>
       </form>
+
+      <button
+        type="button"
+        onClick={() => router.push(ROUTES.VERIFY_CODE + `?email=${encodeURIComponent(email)}`)}
+        className="mt-3 w-full text-xs text-gray-500 hover:text-gray-700"
+      >
+        Back to verification
+      </button>
     </div>
   );
 }

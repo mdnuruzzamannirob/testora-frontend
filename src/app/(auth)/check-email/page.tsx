@@ -1,15 +1,18 @@
 "use client";
 
-import { Suspense } from "react";
+import { ROUTES } from "@/constants";
+import { getErrorMessage, useResetPasswordOtpMutation } from "@/store/apis";
+import { ArrowLeft, Mail } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Mail, ArrowLeft } from "lucide-react";
-import { ROUTES } from "@/constants";
+import { Suspense } from "react";
+import { toast } from "sonner";
 
 function CheckEmailContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email") ?? "";
+  const [sendResetOtp, { isLoading: isSendingOtp }] = useResetPasswordOtpMutation();
 
   const maskedEmail = email
     ? email.replace(/(.{2})(.*)(@.*)/, (_, a, b, c) => a + "*".repeat(Math.max(1, b.length)) + c)
@@ -36,13 +39,33 @@ function CheckEmailContent() {
 
       {/* Send OTP button */}
       <button
-        onClick={() => router.push(`${ROUTES.VERIFY_CODE}?email=${encodeURIComponent(email)}`)}
-        className="bg-primary hover:bg-primary/90 mb-3 w-full rounded-lg py-2.5 text-sm font-semibold text-white transition"
+        onClick={async () => {
+          if (!email) {
+            toast.error("Email is missing. Please try again.");
+            return;
+          }
+
+          try {
+            const response = await sendResetOtp({ email }).unwrap();
+            toast.success(response.message || "OTP sent successfully.");
+            router.push(`${ROUTES.VERIFY_CODE}?email=${encodeURIComponent(email)}`);
+          } catch (error) {
+            toast.error(getErrorMessage(error, "Unable to send OTP right now."));
+          }
+        }}
+        disabled={isSendingOtp}
+        className="bg-primary hover:bg-primary/90 mb-3 flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition disabled:opacity-60"
       >
-        Send OTP
+        {isSendingOtp && (
+          <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+        )}
+        {isSendingOtp ? "Sending OTP..." : "Send OTP"}
       </button>
 
-      <button className="mb-5 w-full rounded-lg border border-gray-200 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50">
+      <button
+        onClick={() => router.push(ROUTES.FORGOT_PASSWORD)}
+        className="mb-5 w-full rounded-lg border border-gray-200 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50"
+      >
         Change Email
       </button>
 

@@ -2,26 +2,32 @@
 
 import { ROUTES } from "@/constants";
 import { cn } from "@/lib/utils";
-import { useAppDispatch } from "@/store/hooks";
-import { setCredentials } from "@/store/slices/authSlice";
+import { getErrorMessage, useRegisterUserMutation } from "@/store/apis";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle, Eye, EyeOff, Lock, Mail, User } from "lucide-react";
+import { AlertCircle, Eye, EyeOff, Lock, Mail, MapPin, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
+
+const CITY_OPTIONS = ["Dhaka", "Chattogram", "Khulna", "Rajshahi", "Sylhet", "Barishal"];
 
 const schema = z
   .object({
     fullName: z.string().min(2, "Full name must be at least 2 characters"),
     email: z.string().min(1, "Email is required").email("Please enter a valid email"),
+    city: z.string().min(1, "City is required"),
     password: z
       .string()
       .min(8, "Password must be at least 8 characters")
       .regex(/[A-Z]/, "Must include an uppercase letter")
       .regex(/[0-9]/, "Must include a number"),
     confirmPassword: z.string().min(1, "Please confirm your password"),
+    agreeTerms: z
+      .boolean()
+      .refine((v) => v, "You must agree to Terms of Service and Privacy Policy"),
   })
   .refine((d) => d.password === d.confirmPassword, {
     message: "Passwords do not match",
@@ -32,10 +38,9 @@ type FormValues = z.infer<typeof schema>;
 
 export default function RegisterPage() {
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [serverError, setServerError] = useState<string | null>(null);
+  const [registerUser, { isLoading: isRegistering }] = useRegisterUserMutation();
 
   const {
     register,
@@ -44,37 +49,29 @@ export default function RegisterPage() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormValues) => {
-    setServerError(null);
     try {
-      await new Promise((r) => setTimeout(r, 900));
-      dispatch(
-        setCredentials({
-          user: {
-            id: "1",
-            name: data.fullName,
-            email: data.email,
-            role: "student",
-          },
-          token: "mock-token-",
-        })
+      const response = await registerUser({
+        fullName: data.fullName,
+        city: data.city,
+        email: data.email,
+        password: data.password,
+      }).unwrap();
+
+      toast.success(response.message || "Registration successful. Please verify your email.");
+      router.push(
+        `${ROUTES.VERIFY_CODE}?email=${encodeURIComponent(data.email)}&mode=verify-email`
       );
-      router.push(ROUTES.HOME);
-    } catch {
-      setServerError("Something went wrong. Please try again.");
+    } catch (error) {
+      toast.error(getErrorMessage(error, "Registration failed. Please try again."));
     }
   };
+
+  const isSubmittingForm = isSubmitting || isRegistering;
 
   return (
     <div className="w-full max-w-100">
       <h1 className="mb-1 text-2xl font-bold text-gray-900">Create your Testora account</h1>
       <p className="mb-6 text-sm text-gray-500">Use one account across both Web and App</p>
-
-      {serverError && (
-        <div className="mb-4 flex items-center gap-2.5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-          <AlertCircle className="h-4 w-4 shrink-0" />
-          {serverError}
-        </div>
-      )}
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
         {/* Full Name */}
@@ -127,6 +124,40 @@ export default function RegisterPage() {
             <p className="mt-1 flex items-center gap-1 text-xs text-red-500">
               <AlertCircle className="h-3 w-3" />
               {errors.email.message}
+            </p>
+          )}
+        </div>
+
+        {/* City */}
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-gray-700">City</label>
+          <div className="relative">
+            <MapPin className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <select
+              {...register("city")}
+              defaultValue=""
+              className={cn(
+                "w-full appearance-none rounded-lg border py-2.5 pr-8 pl-10 text-sm text-gray-900 transition outline-none",
+                "focus:border-primary focus:ring-primary/20 focus:ring-2",
+                errors.city
+                  ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
+                  : "border-gray-200 bg-white"
+              )}
+            >
+              <option value="" disabled>
+                Select your city
+              </option>
+              {CITY_OPTIONS.map((city) => (
+                <option key={city} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select>
+          </div>
+          {errors.city && (
+            <p className="mt-1 flex items-center gap-1 text-xs text-red-500">
+              <AlertCircle className="h-3 w-3" />
+              {errors.city.message}
             </p>
           )}
         </div>
@@ -201,26 +232,42 @@ export default function RegisterPage() {
           )}
         </div>
 
-        <p className="text-xs text-gray-400">
-          I agree to the{" "}
-          <Link href={ROUTES.TERMS_OF_SERVICE} className="text-primary hover:underline">
-            Terms of Service
-          </Link>{" "}
-          and{" "}
-          <Link href={ROUTES.PRIVACY_POLICY} className="text-primary hover:underline">
-            Privacy Policy
-          </Link>
-        </p>
+        <div>
+          <label className="flex items-start gap-2.5">
+            <input
+              type="checkbox"
+              {...register("agreeTerms")}
+              className="text-primary mt-0.5 h-4 w-4 rounded border-gray-300"
+            />
+            <span className="text-xs text-gray-500">
+              I agree to the{" "}
+              <Link href={ROUTES.TERMS_OF_SERVICE} className="text-primary hover:underline">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link href={ROUTES.PRIVACY_POLICY} className="text-primary hover:underline">
+                Privacy Policy
+              </Link>
+              .
+            </span>
+          </label>
+          {errors.agreeTerms && (
+            <p className="mt-1 flex items-center gap-1 text-xs text-red-500">
+              <AlertCircle className="h-3 w-3" />
+              {errors.agreeTerms.message}
+            </p>
+          )}
+        </div>
 
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmittingForm}
           className="bg-primary hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSubmitting && (
+          {isSubmittingForm && (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
           )}
-          {isSubmitting ? "Creating account..." : "Sign Up"}
+          {isSubmittingForm ? "Creating account..." : "Sign Up"}
         </button>
       </form>
 

@@ -1,8 +1,9 @@
+import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
+import ReduxProvider from "@/store/ReduxProvider";
 import type { Metadata } from "next";
 import { Google_Sans } from "next/font/google";
-import ReduxProvider from "@/store/ReduxProvider";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 
 const googleSans = Google_Sans({
   variable: "--font-google-sans",
@@ -23,7 +24,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body suppressHydrationWarning className={cn("antialiased", googleSans.className)}>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          {children}
+          <Toaster
+            richColors
+            position="top-center"
+            expand
+            swipeDirections={["bottom", "left", "right", "top"]}
+            
+          />
+        </ReduxProvider>
       </body>
     </html>
   );

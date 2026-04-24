@@ -1,10 +1,18 @@
 "use client";
 
-import { useState, useRef, useEffect, Suspense } from "react";
+import { ROUTES } from "@/constants";
+import {
+  getErrorMessage,
+  useResendOtpMutation,
+  useResetPasswordOtpMutation,
+  useVerifyEmailMutation,
+  useVerifyResetPasswordMutation,
+} from "@/store/apis";
+import { ArrowLeft, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ShieldCheck } from "lucide-react";
-import { ROUTES } from "@/constants";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 
 const OTP_LENGTH = 6;
 
@@ -12,13 +20,20 @@ function VerifyCodeContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const email = searchParams.get("email") ?? "";
+  const mode = searchParams.get("mode") === "verify-email" ? "verify-email" : "reset-password";
+
+  const [verifyEmail, { isLoading: isVerifyingEmail }] = useVerifyEmailMutation();
+  const [verifyResetPassword, { isLoading: isVerifyingReset }] = useVerifyResetPasswordMutation();
+  const [resendOtp, { isLoading: isResendingEmailOtp }] = useResendOtpMutation();
+  const [resetPasswordOtp, { isLoading: isResendingResetOtp }] = useResetPasswordOtpMutation();
 
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
   const [error, setError] = useState<string | null>(null);
-  const [isVerifying, setIsVerifying] = useState(false);
   const [resendCoolDown, setResendCoolDown] = useState(0);
-  const [isResending, setIsResending] = useState(false);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
+
+  const isVerifying = isVerifyingEmail || isVerifyingReset;
+  const isResending = isResendingEmailOtp || isResendingResetOtp;
 
   useEffect(() => {
     if (resendCoolDown <= 0) return;
@@ -59,27 +74,49 @@ function VerifyCodeContent() {
       setError("Please enter all 6 digits.");
       return;
     }
-    setIsVerifying(true);
+
+    if (!email) {
+      setError("Email is missing. Please go back and try again.");
+      return;
+    }
+
     setError(null);
     try {
-      await new Promise((r) => setTimeout(r, 900));
+      if (mode === "verify-email") {
+        const response = await verifyEmail({ email, otp: code }).unwrap();
+        toast.success(response.message || "Email verified successfully.");
+        router.push(ROUTES.LOGIN);
+        return;
+      }
+
+      const response = await verifyResetPassword({ email, otp: code }).unwrap();
+      toast.success(response.message || "OTP verified successfully.");
       router.push(`${ROUTES.RESET_PASSWORD}?email=${encodeURIComponent(email)}`);
-    } catch {
-      setError("Invalid code. Please try again.");
-    } finally {
-      setIsVerifying(false);
+    } catch (apiError) {
+      const message = getErrorMessage(apiError, "Invalid code. Please try again.");
+      setError(message);
+      toast.error(message);
     }
   };
 
   const handleResend = async () => {
-    setIsResending(true);
+    if (!email) {
+      setError("Email is missing. Please go back and try again.");
+      return;
+    }
+
     try {
-      await new Promise((r) => setTimeout(r, 600));
+      const response =
+        mode === "verify-email"
+          ? await resendOtp({ email }).unwrap()
+          : await resetPasswordOtp({ email }).unwrap();
+
+      toast.success(response.message || "A new OTP has been sent.");
       setResendCoolDown(60);
       setOtp(Array(OTP_LENGTH).fill(""));
       inputRefs.current[0]?.focus();
-    } finally {
-      setIsResending(false);
+    } catch (apiError) {
+      toast.error(getErrorMessage(apiError, "Unable to resend code right now."));
     }
   };
 
@@ -94,7 +131,9 @@ function VerifyCodeContent() {
 
       <h2 className="mb-1 text-2xl font-bold text-gray-900">Verify Code</h2>
       <p className="mb-6 text-sm text-gray-500">
-        Enter the 8-digit verification code sent to your email.
+        {mode === "verify-email"
+          ? "Enter the 6-digit code to verify your email."
+          : "Enter the 6-digit verification code sent to your email."}
       </p>
 
       {/* OTP inputs */}
@@ -136,7 +175,11 @@ function VerifyCodeContent() {
         disabled={isResending || resendCoolDown > 0}
         className="text-primary mb-4 w-full text-sm font-medium hover:underline disabled:opacity-50"
       >
-        {resendCoolDown > 0 ? `Resend Code (${resendCoolDown}s)` : "Resend Code"}
+        {resendCoolDown > 0
+          ? `Resend Code (${resendCoolDown}s)`
+          : isResending
+            ? "Resending..."
+            : "Resend Code"}
       </button>
 
       <p className="mb-4 text-xs text-gray-400">
@@ -144,7 +187,7 @@ function VerifyCodeContent() {
       </p>
 
       <Link
-        href={ROUTES.LOGIN}
+        href={mode === "verify-email" ? ROUTES.LOGIN : ROUTES.CHECK_EMAIL}
         className="flex items-center justify-center gap-1.5 text-sm text-gray-500 hover:text-gray-700"
       >
         <ArrowLeft className="h-3.5 w-3.5" />

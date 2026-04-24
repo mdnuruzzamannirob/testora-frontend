@@ -1,20 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { Eye, EyeOff, AlertCircle, Lock, User } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { ROUTES } from "@/constants";
+import { cn } from "@/lib/utils";
+import { getErrorMessage, useLoginMutation } from "@/store/apis";
 import { useAppDispatch } from "@/store/hooks";
 import { setCredentials } from "@/store/slices/authSlice";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { AlertCircle, Eye, EyeOff, Lock, Mail } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const schema = z.object({
-  emailOrUsername: z.string().min(1, "Email or username is required"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  email: z.string().min(1, "Email is required").email("Please enter a valid email"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -23,7 +25,7 @@ export default function LoginPage() {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const [serverError, setServerError] = useState<string | null>(null);
+  const [login, { isLoading: isLoggingIn }] = useLoginMutation();
 
   const {
     register,
@@ -32,66 +34,57 @@ export default function LoginPage() {
   } = useForm<FormValues>({ resolver: zodResolver(schema) });
 
   const onSubmit = async (data: FormValues) => {
-    setServerError(null);
     try {
-      await new Promise((r) => setTimeout(r, 900));
+      const response = await login({ email: data.email, password: data.password }).unwrap();
       dispatch(
         setCredentials({
           user: {
-            id: "1",
-            name: data.emailOrUsername.split("@")[0] || "User",
-            email: data.emailOrUsername.includes("@")
-              ? data.emailOrUsername
-              : `${data.emailOrUsername}@testora.com`,
+            id: response.data.userId || "",
+            name: data.email.split("@")[0] || "User",
+            email: data.email,
             role: "student",
           },
-          token: "mock-token-",
+          token: response.data.accessToken,
         })
       );
+      toast.success(response.message || "Login successful.");
       router.push(ROUTES.HOME);
-    } catch {
-      setServerError("Invalid credentials. Please try again.");
+    } catch (error) {
+      toast.error(getErrorMessage(error, "Invalid credentials. Please try again."));
     }
   };
+
+  const isSubmittingForm = isSubmitting || isLoggingIn;
 
   return (
     <div className="w-full max-w-100">
       <h1 className="mb-1 text-2xl font-bold text-gray-900">Welcome to Testora</h1>
       <p className="mb-6 text-sm text-gray-500">One account works on both Web and App</p>
 
-      {serverError && (
-        <div className="mb-5 flex items-center gap-2.5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-          <AlertCircle className="h-4 w-4 shrink-0" />
-          {serverError}
-        </div>
-      )}
-
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
-        {/* Email or Username */}
+        {/* Email */}
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-gray-700">
-            Email or Username
-          </label>
+          <label className="mb-1.5 block text-sm font-medium text-gray-700">Email</label>
           <div className="relative">
-            <User className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-gray-400" />
+            <Mail className="pointer-events-none absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-gray-400" />
             <input
-              type="text"
-              autoComplete="username"
-              {...register("emailOrUsername")}
-              placeholder="Enter your email or username"
+              type="email"
+              autoComplete="email"
+              {...register("email")}
+              placeholder="Enter your email"
               className={cn(
                 "w-full rounded-lg border py-2.5 pr-3.5 pl-10 text-sm text-gray-900 placeholder-gray-400 transition outline-none",
                 "focus:border-primary focus:ring-primary/20 focus:ring-2",
-                errors.emailOrUsername
+                errors.email
                   ? "border-red-400 bg-red-50 focus:border-red-400 focus:ring-red-400/20"
                   : "border-gray-200 bg-white"
               )}
             />
           </div>
-          {errors.emailOrUsername && (
+          {errors.email && (
             <p className="mt-1.5 flex items-center gap-1 text-xs text-red-500">
               <AlertCircle className="h-3 w-3" />
-              {errors.emailOrUsername.message}
+              {errors.email.message}
             </p>
           )}
         </div>
@@ -141,13 +134,13 @@ export default function LoginPage() {
 
         <button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmittingForm}
           className="bg-primary hover:bg-primary/90 flex w-full items-center justify-center gap-2 rounded-lg py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {isSubmitting && (
+          {isSubmittingForm && (
             <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
           )}
-          {isSubmitting ? "Logging in..." : "Log In"}
+          {isSubmittingForm ? "Logging in..." : "Log In"}
         </button>
       </form>
 
